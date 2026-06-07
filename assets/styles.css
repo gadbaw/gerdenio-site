@@ -142,6 +142,23 @@ section { padding: 84px 0; }
 .hero .lede { max-width: 52ch; margin-bottom: 2rem; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
+/* ---------- Botanical accents (garden motif) ---------- */
+.sprig-accent {
+  width: 140px; height: auto; display: block;
+  margin: 0 0 20px; opacity: 0.9;
+}
+.center .sprig-accent { margin-left: auto; margin-right: auto; }
+.botdiv {
+  display: flex; align-items: center; gap: 22px;
+  margin: 0 0 40px;
+}
+.botdiv .ln {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line) 35%, var(--line) 65%, transparent);
+}
+.botdiv img { width: 150px; height: auto; flex: none; }
+.botdiv.center { justify-content: center; }
+
 /* ---------- Photo slots ---------- */
 .figure { margin: 0; }
 .figure img { width: 100%; height: auto; display: block; border-radius: 2px; }
