@@ -286,3 +286,31 @@ section { padding: 84px 0; }
   section { padding: 60px 0; }
   .hero { padding: 70px 0 56px; }
 }
+
+/* ---------- Motion (tasteful · reduced-motion aware) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* hover micro-interactions */
+  .card { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(43,54,64,.10); border-color: var(--accent-soft); }
+  .btn { transition: background .2s ease, border-color .2s ease, transform .25s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .figure img { transition: transform .8s cubic-bezier(.22,.61,.36,1); }
+  .figure:hover img { transform: scale(1.02); }
+
+  /* scroll-reveal (active only once JS adds .anim, so no-JS shows everything) */
+  html.anim .hero .eyebrow, html.anim .hero h1, html.anim .hero .lede, html.anim .hero-actions,
+  html.anim h2, html.anim .card, html.anim .person, html.anim .figure,
+  html.anim .quote, html.anim blockquote, html.anim .notice, html.anim .tribute,
+  html.anim .contact-detail, html.anim .field {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+  }
+  html.anim .is-in { opacity: 1 !important; transform: none !important; }
+
+  /* the growth line draws itself in, left to right */
+  html.anim .sprig-accent, html.anim .botdiv img {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.15s cubic-bezier(.22,.61,.36,1);
+  }
+  html.anim .sprig-accent.is-in, html.anim .botdiv img.is-in { clip-path: inset(0 0 0 0); }
+}
