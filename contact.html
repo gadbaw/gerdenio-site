@@ -62,25 +62,31 @@
       <!-- FORM -->
       <div>
         <h2>Send an inquiry</h2>
-        <p>Tell us a little about what brings you here. This form opens your email client; you may also write to us directly at <a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a>.</p>
-        <form action="mailto:hello@gerdenio.com" method="post" enctype="text/plain">
+        <p>Tell us a little about what brings you here, and we'll respond personally. You're also welcome to write to us directly at <a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a>.</p>
+        <!-- Formspree endpoint -->
+        <form id="inquiry-form" action="https://formspree.io/f/mgobajdn" method="POST">
           <div class="field">
             <label for="name">Name</label>
-            <input type="text" id="name" name="Name" required />
+            <input type="text" id="name" name="name" autocomplete="name" required />
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" name="Email" required />
+            <input type="email" id="email" name="email" autocomplete="email" required />
           </div>
           <div class="field">
             <label for="phone">Phone (optional)</label>
-            <input type="tel" id="phone" name="Phone" />
+            <input type="tel" id="phone" name="phone" autocomplete="tel" />
           </div>
           <div class="field">
             <label for="message">How can we help?</label>
-            <textarea id="message" name="Message" placeholder="A few sentences about what you're looking for and any questions you have."></textarea>
+            <textarea id="message" name="message" rows="5" placeholder="A few sentences about what you're looking for and any questions you have."></textarea>
+            <p class="field-hint">For your privacy, please don't include sensitive clinical or health details here — we'll discuss those securely once we're in touch.</p>
           </div>
-          <button type="submit" class="btn">Send inquiry</button>
+          <!-- spam honeypot: visible to bots, hidden from people -->
+          <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
+          <input type="hidden" name="_subject" value="New inquiry — gerdenio.com" />
+          <button type="submit" class="btn" id="inquiry-submit">Send inquiry</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
 
@@ -144,5 +150,54 @@
       </div>
     </div>
   </footer>
+
+  <!-- Contact form: AJAX submit to Formspree with graceful fallback -->
+  <script>
+  (function () {
+    var form = document.getElementById('inquiry-form');
+    if (!form) return;
+    var statusEl = document.getElementById('form-status');
+    var btn = document.getElementById('inquiry-submit');
+    var notConnected = form.action.indexOf('YOUR_FORM_ID') !== -1;
+
+    function setStatus(msg, kind) {
+      statusEl.textContent = msg;
+      statusEl.className = 'form-status' + (kind ? ' is-' + kind : '');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (notConnected) {
+        setStatus('This form isn’t connected yet — please email hello@gerdenio.com in the meantime.', 'error');
+        return;
+      }
+      btn.disabled = true;
+      var label = btn.textContent;
+      btn.textContent = 'Sending…';
+      setStatus('', '');
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (res.ok) {
+          form.reset();
+          form.classList.add('is-sent');
+          setStatus('Thank you — your message has been sent. We’ll respond personally, usually within a couple of business days.', 'success');
+        } else {
+          return res.json().then(function (d) {
+            throw new Error((d && d.errors && d.errors[0] && d.errors[0].message) || 'error');
+          });
+        }
+      }).catch(function () {
+        setStatus('Sorry — we couldn’t send that just now. Please email hello@gerdenio.com directly and we’ll get right back to you.', 'error');
+      }).finally(function () {
+        btn.disabled = false;
+        btn.textContent = label;
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

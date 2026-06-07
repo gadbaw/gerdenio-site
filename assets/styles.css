@@ -314,3 +314,18 @@ section { padding: 84px 0; }
   }
   html.anim .sprig-accent.is-in, html.anim .botdiv img.is-in { clip-path: inset(0 0 0 0); }
 }
+
+/* ---------- Contact form states ---------- */
+.field-hint { font-size: 0.82rem; color: var(--muted); margin: 0.5rem 0 0; line-height: 1.5; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-status { margin: 1.1rem 0 0; font-size: 0.98rem; line-height: 1.55; }
+.form-status.is-error { color: #9a3b2f; }
+.form-status.is-success {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px; border-radius: 0 4px 4px 0; color: var(--ink);
+}
+#inquiry-form.is-sent .field,
+#inquiry-form.is-sent #inquiry-submit,
+#inquiry-form.is-sent .hp { display: none; }
+#inquiry-submit[disabled] { opacity: 0.6; cursor: default; }
