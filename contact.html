@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact · Gerdenio Manuel Center for Psychotherapy</title>
+  <meta name="description" content="Reach out to the Gerdenio Manuel Center for Psychotherapy to begin a conversation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <div class="brand">
+        <a href="index.html">Gerdenio Manuel Center
+          <small>for Psychotherapy</small>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+      <div class="nav-links" id="nav">
+        <a href="about.html">The Center</a>
+        <a href="services.html">Services</a>
+        <a href="clinicians.html">Clinicians</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="contact.html" class="btn" style="padding:9px 18px;">Inquire</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HEADER -->
+  <section class="hero" style="padding-bottom:40px;">
+    <div class="wrap read">
+      <p class="eyebrow">Contact</p>
+      <h1>Begin a conversation.</h1>
+      <p class="lede">We welcome your questions about psychotherapy, our practice, and whether our work might be a good fit. Reaching out is a first step, not a commitment — we'll respond personally.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT GRID -->
+  <section style="padding-top:24px;">
+    <div class="wrap contact-grid">
+
+      <!-- FORM -->
+      <div>
+        <h2>Send an inquiry</h2>
+        <p>Tell us a little about what brings you here. This form opens your email client; you may also write to us directly at <a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a>.</p>
+        <form action="mailto:hello@gerdenio.com" method="post" enctype="text/plain">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="Name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required />
+          </div>
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="Phone" />
+          </div>
+          <div class="field">
+            <label for="message">How can we help?</label>
+            <textarea id="message" name="Message" placeholder="A few sentences about what you're looking for and any questions you have."></textarea>
+          </div>
+          <button type="submit" class="btn">Send inquiry</button>
+        </form>
+      </div>
+
+      <!-- DETAILS -->
+      <div>
+        <h2>Reach us</h2>
+        <div class="contact-detail">
+          <h4>Email</h4>
+          <p><a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a></p>
+        </div>
+        <div class="contact-detail">
+          <h4>Phone</h4>
+          <p><a href="tel:+14155693735">(415) 569-3735</a></p>
+        </div>
+        <div class="contact-detail">
+          <h4>Location</h4>
+          <p>Loyola Jesuit Community<br>2600 Turk Blvd<br>San Francisco, CA 94118<br>By appointment · In-person and telehealth</p>
+        </div>
+        <div class="contact-detail">
+          <h4>Hours</h4>
+          <p>By appointment, Monday–Friday</p>
+        </div>
+
+        <div class="notice" style="margin-top:32px;">
+          <strong>If you are in crisis,</strong> this form is not monitored for emergencies. Call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), or call <strong>911</strong>, or go to your nearest emergency room.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <p class="brand-foot">Gerdenio Manuel Center for Psychotherapy</p>
+          <p>Depth-oriented individual and couples psychotherapy and psychological assessment, serving the San Francisco Bay Area.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">The Center</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="clinicians.html">Clinicians</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a></li>
+            <li><a href="tel:+14155693735">(415) 569-3735</a></li>
+            <li>2600 Turk Blvd, San Francisco, CA 94118</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>© 2026 Gerdenio Manuel Center for Psychotherapy</span>
+        <span>If you are in crisis, call or text 988 (Suicide &amp; Crisis Lifeline) or 911.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

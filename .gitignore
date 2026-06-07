@@ -1,0 +1,5 @@
+# Local Claude Code preview config (stale path, not for deploy)
+.claude/
+
+# OS cruft
+.DS_Store
