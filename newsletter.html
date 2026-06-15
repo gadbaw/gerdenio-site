@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reflections · Gerdenio Manuel Center for Psychotherapy</title>
-  <meta name="description" content="Occasional writing, interviews, and talks from the clinicians of the Gerdenio Manuel Center for Psychotherapy — on the work of psychotherapy and the life it asks of us." />
+  <title>Newsletter · Gerdenio Manuel Center for Psychotherapy</title>
+  <meta name="description" content="Subscribe to Reflections — an occasional letter from the Gerdenio Manuel Center for Psychotherapy, with new interviews, talks, and essays delivered to your inbox." />
   <!-- Open Graph / social sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Gerdenio Manuel Center for Psychotherapy" />
-  <meta property="og:title" content="Reflections · Gerdenio Manuel Center for Psychotherapy" />
-  <meta property="og:description" content="Occasional writing, interviews, and talks from our clinicians — on the work of psychotherapy and the life it asks of us." />
-  <meta property="og:url" content="https://gerdenio.com/reflections.html" />
+  <meta property="og:title" content="Subscribe to Reflections · Gerdenio Manuel Center" />
+  <meta property="og:description" content="An occasional letter — new interviews, talks, and essays on the work of psychotherapy, delivered to your inbox." />
+  <meta property="og:url" content="https://gerdenio.com/newsletter.html" />
   <meta property="og:image" content="https://gerdenio.com/assets/img/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Gerdenio Manuel Center for Psychotherapy" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Reflections · Gerdenio Manuel Center for Psychotherapy" />
-  <meta name="twitter:description" content="Occasional writing, interviews, and talks from our clinicians." />
+  <meta name="twitter:title" content="Subscribe to Reflections · Gerdenio Manuel Center" />
+  <meta name="twitter:description" content="An occasional letter on the work of psychotherapy and the life it asks of us." />
   <meta name="twitter:image" content="https://gerdenio.com/assets/img/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,40 +46,46 @@
     </nav>
   </header>
 
-  <!-- HEADER -->
-  <section class="hero" style="padding-bottom:40px;">
+  <!-- SIGNUP -->
+  <section class="hero" style="padding-bottom:48px;">
     <div class="wrap read">
       <img class="sprig-accent" src="assets/img/sprig-single.svg" alt="" />
-      <p class="eyebrow">Reflections</p>
-      <h1>Writing, talks, and conversations.</h1>
-      <p class="lede">Occasional pieces from our clinicians — interviews, talks, and short essays on the work of psychotherapy, and the life it asks of us.</p>
+      <p class="eyebrow">Newsletter</p>
+      <h1>An occasional letter.</h1>
+      <p class="lede">A few times a year, we send a new <a href="reflections.html">reflection</a> — an interview, a talk, or a short essay on the work of psychotherapy and the life it asks of us. No noise, no selling. Unsubscribe anytime.</p>
+
+      <!-- Buttondown signup: replace USERNAME with your Buttondown username -->
+      <form id="subscribe-form" class="subscribe-form"
+            action="https://buttondown.email/api/emails/embed-subscribe/USERNAME"
+            method="post" target="popupwindow"
+            onsubmit="window.open('https://buttondown.email/USERNAME','popupwindow')">
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+        </div>
+        <input type="hidden" name="embed" value="1" />
+        <button type="submit" class="btn">Subscribe</button>
+        <p class="field-hint">We'll only use your email to send Reflections, and we never share it.</p>
+        <p class="form-status" id="subscribe-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
-  <!-- POSTS -->
-  <section style="padding-top:16px;">
-    <div class="wrap">
-      <div class="post-list">
-
-        <article class="post-item">
-          <p class="post-meta">Interview</p>
-          <h2><a href="reflections-sonny-on-suffering.html">On Suffering, Presence, and Grace</a></h2>
-          <p class="byline" style="margin-bottom:14px;">A conversation with Gerdenio “Sonny” Manuel, S.J., Ph.D.</p>
-          <p class="excerpt">Psychologist, teacher, and Jesuit priest, Sonny Manuel has spent a lifetime accompanying people through pain. He reflects on presence, the question beneath all others — “Do you love me?” — and a God who does not trade in outcomes.</p>
-          <p class="more"><a href="reflections-sonny-on-suffering.html">Read the conversation →</a></p>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section-alt center">
+  <!-- WHAT TO EXPECT -->
+  <section class="section-alt">
     <div class="wrap read">
-      <div class="botdiv center"><img src="assets/img/sprig-divider.svg" alt="" /></div>
-      <h2>Don't miss the next one.</h2>
-      <p>We send a new reflection a few times a year. Subscribe to have it delivered — no noise, and you can unsubscribe anytime.</p>
-      <a href="newsletter.html" class="btn">Subscribe to Reflections</a>
+      <div class="botdiv"><img src="assets/img/sprig-divider.svg" alt="" /></div>
+      <p class="eyebrow">What to expect</p>
+      <ul class="cred-list" style="font-size:1.02rem; max-width:32em;">
+        <li>A new reflection a few times a year — never more than that.</li>
+        <li>Interviews, talks, and short essays from our clinicians.</li>
+        <li>Nothing promotional, and your address kept private.</li>
+        <li>One click to unsubscribe, always.</li>
+      </ul>
+      <p style="margin-top:28px;">
+        <a href="newsletter-issue-01.html" class="btn btn-ghost">Read the first issue</a>
+        &nbsp;&nbsp;<a href="reflections.html">Browse all reflections →</a>
+      </p>
     </div>
   </section>
 
@@ -117,5 +123,24 @@
       </div>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    var f = document.getElementById('subscribe-form');
+    if (!f) return;
+    var s = document.getElementById('subscribe-status');
+    var notConnected = f.action.indexOf('USERNAME') !== -1;
+    f.addEventListener('submit', function (e) {
+      if (notConnected) {
+        e.preventDefault();
+        s.textContent = 'The newsletter isn’t connected just yet — please check back soon, or email hello@gerdenio.com to be added.';
+        s.className = 'form-status is-error';
+        return;
+      }
+      s.textContent = 'Almost there — check your inbox and click the link to confirm your subscription.';
+      s.className = 'form-status is-success';
+    });
+  })();
+  </script>
 </body>
 </html>

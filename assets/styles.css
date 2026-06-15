@@ -361,3 +361,8 @@ section { padding: 84px 0; }
 }
 .article-foot p { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); line-height: 1.6; margin: 0 0 0.6em; }
 .article-foot strong { color: var(--ink-soft); }
+
+/* ---------- Newsletter signup ---------- */
+.subscribe-form { max-width: 30rem; margin-top: 26px; }
+.subscribe-form .btn { margin-top: 2px; }
+.subscribe-form .field-hint { margin-top: 12px; }
