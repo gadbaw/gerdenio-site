@@ -329,3 +329,35 @@ section { padding: 84px 0; }
 #inquiry-form.is-sent #inquiry-submit,
 #inquiry-form.is-sent .hp { display: none; }
 #inquiry-submit[disabled] { opacity: 0.6; cursor: default; }
+
+/* ---------- Reflections (index + article) ---------- */
+.post-list { max-width: var(--readw); margin: 0 auto; }
+.post-item { padding: 36px 0; border-top: 1px solid var(--line); }
+.post-item:first-child { border-top: 0; padding-top: 0; }
+.post-meta { font-family: var(--sans); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+.post-item h2 { font-size: 1.9rem; margin-bottom: 0.25em; }
+.post-item h2 a { color: var(--ink); }
+.post-item h2 a:hover { color: var(--accent-dk); text-decoration: none; }
+.post-item .excerpt { color: var(--ink-soft); margin-bottom: 0.8em; }
+.post-item .more a { font-family: var(--sans); font-size: 0.95rem; color: var(--accent-dk); }
+
+.article { max-width: 720px; margin: 0 auto; }
+.article .byline { font-family: var(--sans); font-size: 1.02rem; color: var(--ink-soft); margin: 0.2em 0 0; }
+.article .standfirst {
+  font-family: var(--serif); font-size: 1.32rem; line-height: 1.5;
+  color: var(--ink); font-style: italic; margin: 26px 0 0; max-width: 40ch;
+}
+.editor-note { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); font-style: italic; margin-top: 14px; }
+.article-body h3 { font-size: 1.5rem; margin: 1.9em 0 0.55em; }
+.article-body h3:first-child { margin-top: 0; }
+.article-body p { font-size: 1.09rem; line-height: 1.78; color: var(--ink-soft); }
+.pullquote {
+  font-family: var(--serif); font-weight: 300; font-size: 1.7rem; line-height: 1.4;
+  color: var(--accent-dk); border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 30px; margin: 1.4em 0; max-width: 24ch; font-style: italic;
+}
+.article-foot {
+  margin-top: 60px; padding-top: 28px; border-top: 1px solid var(--line);
+}
+.article-foot p { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); line-height: 1.6; margin: 0 0 0.6em; }
+.article-foot strong { color: var(--ink-soft); }
