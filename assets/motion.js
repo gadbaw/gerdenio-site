@@ -1,83 +1,24 @@
-/* Gerdenio — refined motion (reduced-motion aware, degrades gracefully).
-   - Soft page-transition crossfade via the .page-veil overlay
-   - Living "dawn light" canvas behind the home hero (#dawn)
-   Scrolling is left fully native (no smooth-scroll hijack); the canvas pauses
-   while scrolling and when off-screen so it never competes with the scroll. */
+/* Gerdenio — soft page-transition crossfade (reduced-motion aware).
+   The .page-veil fades OUT on load via CSS (safe even if JS fails); this only
+   fades it back IN on internal navigation, then follows the link. The hero
+   "dawn light" glow is now pure CSS (see styles.css), so nothing here touches
+   scrolling. */
 (function () {
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- Page-transition crossfade ----------
-     The veil fades OUT on load via CSS (safe even if JS fails). Here we only
-     fade it back IN on internal navigation, then follow the link. */
-  if (!reduce) {
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest ? e.target.closest('a') : null;
-      if (!a) return;
-      var href = a.getAttribute('href');
-      if (!href || href.charAt(0) === '#') return;
-      if (a.target === '_blank' || a.hasAttribute('download')) return;
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-      var url;
-      try { url = new URL(a.href, location.href); } catch (err) { return; }
-      if (url.origin !== location.origin) return;                  // external
-      if (url.pathname === location.pathname) return;              // same page / anchor
-      if (!/\.html?$/.test(url.pathname) && url.pathname !== '/') return;
-      e.preventDefault();
-      document.documentElement.classList.add('leaving');
-      setTimeout(function () { location.href = a.href; }, 430);
-    });
-  }
-
-  function start() {
-    var cv = document.getElementById('dawn');
-    if (!cv || !cv.getContext || reduce) return;
-    var ctx = cv.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var W = 0, H = 0, onScreen = true, scrolling = false, last = 0, t0 = null, scrollTimer = null;
-    /* soft drifting pools of morning light: pale sky, a warm apricot glow, blue haze */
-    var pools = [
-      { x: 0.18, y: 0.28, r: 0.62, c: [188, 214, 240], a: 0.55 },
-      { x: 0.74, y: 0.18, r: 0.50, c: [247, 227, 198], a: 0.40 },
-      { x: 0.52, y: 0.74, r: 0.66, c: [214, 228, 246], a: 0.55 },
-      { x: 0.88, y: 0.62, r: 0.46, c: [201, 221, 243], a: 0.45 }
-    ];
-    function size() {
-      W = cv.clientWidth; H = cv.clientHeight;
-      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function frame(t) {
-      requestAnimationFrame(frame);
-      if (!onScreen || scrolling) return;     /* don't paint while scrolling / off-screen */
-      if (t - last < 33) return;              /* ~30fps is plenty for this slow motion */
-      last = t;
-      if (t0 === null) t0 = t;
-      var s = (t - t0) / 1000;
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < pools.length; i++) {
-        var b = pools[i];
-        var dx = Math.sin(s * 0.05 + i * 1.7) * 0.05;
-        var dy = Math.cos(s * 0.045 + i * 2.1) * 0.045;
-        var cx = (b.x + dx) * W, cy = (b.y + dy) * H, rr = b.r * Math.max(W, H);
-        var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rr);
-        g.addColorStop(0, 'rgba(' + b.c[0] + ',' + b.c[1] + ',' + b.c[2] + ',' + b.a + ')');
-        g.addColorStop(1, 'rgba(' + b.c[0] + ',' + b.c[1] + ',' + b.c[2] + ',0)');
-        ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-      }
-    }
-    size();
-    window.addEventListener('resize', size, { passive: true });
-    window.addEventListener('scroll', function () {
-      scrolling = true;
-      if (scrollTimer) clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(function () { scrolling = false; }, 140);
-    }, { passive: true });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; }, { threshold: 0 }).observe(cv);
-    }
-    requestAnimationFrame(frame);
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
-  else start();
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.charAt(0) === '#') return;
+    if (a.target === '_blank' || a.hasAttribute('download')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    var url;
+    try { url = new URL(a.href, location.href); } catch (err) { return; }
+    if (url.origin !== location.origin) return;                  // external
+    if (url.pathname === location.pathname) return;              // same page / anchor
+    if (!/\.html?$/.test(url.pathname) && url.pathname !== '/') return;
+    e.preventDefault();
+    document.documentElement.classList.add('leaving');
+    setTimeout(function () { location.href = a.href; }, 430);
+  });
 })();
