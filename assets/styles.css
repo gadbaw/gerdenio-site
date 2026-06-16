@@ -412,3 +412,17 @@ section { padding: 84px 0; }
   html.leaving .page-veil { animation: veil-in 0.42s ease forwards; }
   @keyframes veil-in { from { opacity: 0; visibility: visible; } to { opacity: 1; visibility: visible; } }
 }
+
+/* ---------- Voices / testimonials ---------- */
+.voices { max-width: var(--readw); margin: 0 auto; }
+.voice { margin: 0; padding: 44px 0; border-top: 1px solid var(--line); }
+.voice:first-child { border-top: 0; padding-top: 0; }
+.voice blockquote {
+  margin: 0; font-family: var(--serif); font-weight: 300;
+  font-size: 1.4rem; line-height: 1.55; color: var(--ink); letter-spacing: -0.005em;
+}
+.voice--featured blockquote { font-size: 1.68rem; line-height: 1.5; }
+.voice-mark { display: block; height: 1.1rem; font-family: var(--serif); font-size: 3.4rem; line-height: 0; color: var(--sun); }
+.voice figcaption { margin-top: 1.3rem; }
+.voice .who { display: block; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--accent-dk); }
+.voice .role { display: block; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 3px; }
