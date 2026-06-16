@@ -478,5 +478,17 @@ section { padding: 84px 0; }
 .voice .who { display: block; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--accent-dk); }
 .voice .role { display: block; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 3px; }
 
+/* named clinicians — quote paired with a portrait */
+.voices--people { max-width: 860px; }
+.voice--person { display: grid; grid-template-columns: 152px 1fr; gap: 38px; align-items: start; }
+.voice--person .voice-id { display: flex; flex-direction: column; }
+.voice-photo { width: 152px; height: 190px; object-fit: cover; border-radius: 4px; display: block; }
+.voice--person .who { margin-top: 14px; }
+.voice--person blockquote { font-size: 1.2rem; line-height: 1.62; }
+@media (max-width: 600px) {
+  .voice--person { grid-template-columns: 1fr; gap: 16px; }
+  .voice-photo { width: 120px; height: 150px; }
+}
+
 /* native anchor scrolling lands below the sticky header */
 :target { scroll-margin-top: 90px; }
