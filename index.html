@@ -22,11 +22,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=6" />
+  <link rel="stylesheet" href="assets/styles.css?v=7" />
   <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)d.documentElement.classList.add("anim")}catch(e){}})(document);</script>
   <script defer src="assets/anim.js?v=2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script defer src="assets/motion.js?v=1"></script>
 </head>
 <body>
+  <div class="page-veil" aria-hidden="true"></div>
   <header class="site-header">
     <nav class="nav">
       <div class="brand">
@@ -48,8 +51,9 @@
 
   <!-- HERO -->
   <section class="hero">
+    <canvas id="dawn" aria-hidden="true"></canvas>
     <div class="wrap">
-      <img class="sprig-accent" src="assets/img/sprig-single.svg?d=2" alt="" />
+      <img class="sprig-accent" src="assets/img/sprig-single.svg?d=3" alt="" />
       <p class="eyebrow">San Francisco · Depth-Oriented Psychotherapy</p>
       <h1>Pathways to hope and healing.</h1>
       <p class="lede">The Gerdenio Manuel Center for Psychotherapy is a practice devoted to the slow, careful work of understanding — helping individuals and couples meet what is difficult and move toward a more alive and integrated life.</p>
@@ -73,7 +77,7 @@
   <!-- SERVICES -->
   <section>
     <div class="wrap">
-      <div class="botdiv center"><img src="assets/img/sprig-divider.svg?d=2" alt="" /></div>
+      <div class="botdiv center"><img src="assets/img/sprig-divider.svg?d=3" alt="" /></div>
       <p class="eyebrow center">Areas of Practice</p>
       <h2 class="center" style="margin-bottom:48px;">How we work together</h2>
       <div class="grid grid-3">
