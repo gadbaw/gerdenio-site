@@ -426,3 +426,6 @@ section { padding: 84px 0; }
 .voice figcaption { margin-top: 1.3rem; }
 .voice .who { display: block; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--accent-dk); }
 .voice .role { display: block; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 3px; }
+
+/* native anchor scrolling lands below the sticky header */
+:target { scroll-margin-top: 90px; }
