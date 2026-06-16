@@ -26,13 +26,32 @@
       });
     }
 
+    var all = reveals.concat(lines);
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
 
-    reveals.concat(lines).forEach(function (el) { io.observe(el); });
+    all.forEach(function (el) { io.observe(el); });
+
+    /* Failsafe: reveal anything already in/near the viewport right away, using
+       layout (always computed) rather than waiting on the observer — which can
+       fail to fire in non-painting / embedded contexts and leave content stuck
+       hidden. The observer still handles below-the-fold elements on scroll. */
+    function revealInView() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      all.forEach(function (el) {
+        if (el.classList.contains('is-in')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92 && r.bottom > 0) { el.classList.add('is-in'); io.unobserve(el); }
+      });
+    }
+    revealInView();
+    /* one more pass after first paint, and a final safety net */
+    requestAnimationFrame(revealInView);
+    setTimeout(function () { all.forEach(function (el) { el.classList.add('is-in'); }); }, 2500);
   }
 
   if (document.readyState === 'loading') {
