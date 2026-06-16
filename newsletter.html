@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=3" />
+  <link rel="stylesheet" href="assets/styles.css?v=4" />
   <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)d.documentElement.classList.add("anim")}catch(e){}})(document);</script>
   <script defer src="assets/anim.js"></script>
 </head>
@@ -54,20 +54,37 @@
       <h1>An occasional letter.</h1>
       <p class="lede">A few times a year, we send a new <a href="reflections.html">reflection</a> — an interview, a talk, or a short essay on the work of psychotherapy and the life it asks of us. No noise, no selling. Unsubscribe anytime.</p>
 
-      <!-- Buttondown signup: replace USERNAME with your Buttondown username -->
-      <form id="subscribe-form" class="subscribe-form"
-            action="https://buttondown.email/api/emails/embed-subscribe/gerdenio"
-            method="post" target="popupwindow"
-            onsubmit="window.open('https://buttondown.email/gerdenio','popupwindow')">
-        <div class="field">
-          <label for="email">Email address</label>
-          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+      <!-- MailerLite embedded form · account 2447911 / form 190391812618192516 -->
+      <div id="mlb2-42651708" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-42651708">
+        <div class="ml-form-align-center">
+          <div class="ml-form-embedWrapper embedForm">
+            <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+              <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2447911/forms/190391812618192516/subscribe" data-code="" method="post" target="_blank">
+                <div class="ml-form-formContent">
+                  <div class="ml-form-fieldRow ml-last-item">
+                    <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                      <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="you@example.com" autocomplete="email">
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="ml-submit" value="1">
+                <div class="ml-form-embedSubmit">
+                  <button type="submit" class="primary">Subscribe</button>
+                  <button disabled="disabled" style="display:none;" type="button" class="loading"><div class="ml-form-embedSubmitLoad"></div><span class="sr-only">Loading…</span></button>
+                </div>
+                <input type="hidden" name="anticsrf" value="true">
+              </form>
+            </div>
+            <div class="ml-form-successBody row-success" style="display:none">
+              <div class="ml-form-successContent">
+                <h4>Thank you — one more step.</h4>
+                <p>We've sent a confirmation link to your inbox. Click it to complete your subscription, and your first reflection will arrive shortly after.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <input type="hidden" name="embed" value="1" />
-        <button type="submit" class="btn">Subscribe</button>
-        <p class="field-hint">We'll only use your email to send Reflections, and we never share it.</p>
-        <p class="form-status" id="subscribe-status" role="status" aria-live="polite"></p>
-      </form>
+      </div>
+      <p class="field-hint" style="max-width:30rem;">We'll only use your email to send Reflections, and we never share it.</p>
     </div>
   </section>
 
@@ -124,23 +141,15 @@
     </div>
   </footer>
 
+  <!-- MailerLite embedded-form runtime -->
   <script>
-  (function () {
-    var f = document.getElementById('subscribe-form');
-    if (!f) return;
-    var s = document.getElementById('subscribe-status');
-    var notConnected = f.action.indexOf('USERNAME') !== -1;
-    f.addEventListener('submit', function (e) {
-      if (notConnected) {
-        e.preventDefault();
-        s.textContent = 'The newsletter isn’t connected just yet — please check back soon, or email hello@gerdenio.com to be added.';
-        s.className = 'form-status is-error';
-        return;
-      }
-      s.textContent = 'Almost there — check your inbox and click the link to confirm your subscription.';
-      s.className = 'form-status is-success';
-    });
-  })();
+    function ml_webform_success_42651708() {
+      var $ = ml_jQuery || jQuery;
+      $('.ml-subscribe-form-42651708 .row-success').show();
+      $('.ml-subscribe-form-42651708 .row-form').hide();
+    }
   </script>
+  <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+  <script>fetch("https://assets.mailerlite.com/jsonp/2447911/forms/190391812618192516/takel")</script>
 </body>
 </html>
