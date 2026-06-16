@@ -53,7 +53,7 @@ h1, h2, h3, h4 {
   text-wrap: balance;
 }
 h1 { font-size: clamp(2.3rem, 5.2vw, 3.6rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.022em; }
-h2 { font-size: clamp(1.72rem, 3.5vw, 2.5rem); line-height: 1.1; letter-spacing: -0.018em; }
+h2 { font-size: clamp(1.72rem, 3.5vw, 2.5rem); font-weight: 360; line-height: 1.1; letter-spacing: -0.018em; }
 h3 { font-size: 1.4rem; letter-spacing: -0.008em; }
 h4 { font-size: 1.1rem; font-family: var(--sans); font-weight: 600; letter-spacing: 0; }
 /* the hopeful turn — an italic-sky emphasis inside headings */
@@ -98,7 +98,7 @@ section { padding: 84px 0; }
   font-size: 1.12rem;
   color: var(--ink);
   line-height: 1.15;
-  letter-spacing: 0;
+  letter-spacing: -0.012em;
 }
 .brand a { color: var(--ink); }
 .brand a:hover { text-decoration: none; color: var(--accent-dk); }
@@ -106,7 +106,7 @@ section { padding: 84px 0; }
   display: block;
   font-family: var(--sans);
   font-size: 0.66rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
   margin-top: 2px;
@@ -226,22 +226,26 @@ section { padding: 84px 0; }
 /* ---------- Quote / testimonial ---------- */
 .quote {
   font-family: var(--serif);
+  font-weight: 300;
   font-size: clamp(1.3rem, 2.4vw, 1.7rem);
   line-height: 1.5;
+  letter-spacing: -0.012em;
   color: var(--ink);
   max-width: 760px;
   margin: 0 auto;
 }
 .quote cite { display: block; font-family: var(--sans); font-style: normal; font-size: 0.9rem; color: var(--muted); margin-top: 1.2rem; letter-spacing: 0.02em; }
-.quote-mark { font-family: var(--serif); font-size: 3rem; color: var(--accent); line-height: 0.2; display:block; margin-bottom: 1rem; }
+.quote-mark { font-family: var(--serif); font-size: 3.4rem; color: var(--sun); line-height: 0.2; display:block; margin-bottom: 1rem; }
 
 /* ---------- Naming note ---------- */
 .tribute {
   border-left: 3px solid var(--accent);
   padding: 6px 0 6px 28px;
   font-family: var(--serif);
-  font-size: 1.25rem;
-  line-height: 1.6;
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
@@ -268,8 +272,8 @@ section { padding: 84px 0; }
 }
 .site-footer a { color: #e6ebed; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
-.site-footer h4 { color: #fff; font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; }
-.site-footer .brand-foot { font-family: var(--serif); font-size: 1.25rem; color: #fff; }
+.site-footer h4 { color: #fff; font-family: var(--sans); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 14px; }
+.site-footer .brand-foot { font-family: var(--serif); font-size: 1.3rem; letter-spacing: -0.012em; color: #fff; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { padding: 4px 0; }
 .footer-base { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; color: #9aa4ab; }
@@ -277,7 +281,7 @@ section { padding: 84px 0; }
 /* ---------- Disclaimer banner ---------- */
 .notice {
   background: var(--accent-soft);
-  border: 1px solid #cfe0da;
+  border: 1px solid #cbdaf0;
   border-radius: 3px;
   padding: 18px 22px;
   font-size: 0.9rem;
@@ -371,7 +375,7 @@ section { padding: 84px 0; }
 .post-list { max-width: var(--readw); margin: 0 auto; }
 .post-item { padding: 36px 0; border-top: 1px solid var(--line); }
 .post-item:first-child { border-top: 0; padding-top: 0; }
-.post-meta { font-family: var(--sans); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+.post-meta { font-family: var(--sans); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
 .post-item h2 { font-size: 1.9rem; margin-bottom: 0.25em; }
 .post-item h2 a { color: var(--ink); }
 .post-item h2 a:hover { color: var(--accent-dk); text-decoration: none; }
@@ -381,8 +385,8 @@ section { padding: 84px 0; }
 .article { max-width: 720px; margin: 0 auto; }
 .article .byline { font-family: var(--sans); font-size: 1.02rem; color: var(--ink-soft); margin: 0.2em 0 0; }
 .article .standfirst {
-  font-family: var(--serif); font-size: 1.32rem; line-height: 1.5;
-  color: var(--ink); font-style: italic; margin: 26px 0 0; max-width: 40ch;
+  font-family: var(--serif); font-weight: 300; font-size: 1.34rem; line-height: 1.5;
+  letter-spacing: -0.01em; color: var(--ink); font-style: italic; margin: 26px 0 0; max-width: 40ch;
 }
 .editor-note { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); font-style: italic; margin-top: 14px; }
 .article-body h3 { font-size: 1.5rem; margin: 1.9em 0 0.55em; }
