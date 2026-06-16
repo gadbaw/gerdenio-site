@@ -161,6 +161,16 @@ section { padding: 84px 0; }
 .botdiv img { width: 150px; height: auto; flex: none; }
 .botdiv.center { justify-content: center; }
 
+/* inline-SVG sprigs (injected by sprig.js; the <img> above is the no-JS fallback) */
+.sprig-svg { display: block; height: auto; overflow: visible; }
+.sprig-svg--single { width: 208px; margin: 0 0 22px; }
+.center .sprig-svg--single { margin-left: auto; margin-right: auto; }
+.botdiv .sprig-svg--divider { width: 150px; flex: none; }
+.sprig-svg path { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.sprig-svg .stem { stroke: #305f9e; }
+.sprig-svg .lb { stroke: #4f86cf; }
+.sprig-svg .la { stroke: #e8973a; }
+
 /* ---------- Photo slots ---------- */
 .figure { margin: 0; }
 .figure img { width: 100%; height: auto; display: block; border-radius: 2px; }
@@ -308,12 +318,35 @@ section { padding: 84px 0; }
   }
   html.anim .is-in { opacity: 1 !important; transform: none !important; }
 
-  /* the growth line draws itself in, left to right */
-  html.anim .sprig-accent, html.anim .botdiv img {
-    clip-path: inset(0 100% 0 0);
-    transition: clip-path 1.15s cubic-bezier(.22,.61,.36,1);
-  }
-  html.anim .sprig-accent.is-in, html.anim .botdiv img.is-in { clip-path: inset(0 0 0 0); }
+  /* SPROUT — the stem draws itself; the leaves grow from the stem and settle.
+     Hidden states are scoped to html.anim so no-JS / reduced-motion show the
+     sprig fully (the @media wrapper already excludes reduced-motion). */
+  html.anim .sprig-svg .stem { stroke-dasharray: 100; stroke-dashoffset: 100; }
+  html.anim .sprig-svg .lb,
+  html.anim .sprig-svg .la { opacity: 0; transform-box: view-box; }
+  html.anim .sprig-svg--single .lb { transform-origin: 150px 29px; }
+  html.anim .sprig-svg--single .la { transform-origin: 139px 31px; }
+  html.anim .sprig-svg--divider .lb,
+  html.anim .sprig-svg--divider .la { transform-origin: 120px 20px; }
+
+  html.anim .sprig-svg.go .stem { animation: sprigDraw 1s cubic-bezier(.16,1,.3,1) forwards; }
+  html.anim .sprig-svg.go .lb { animation: sprigSprout .9s cubic-bezier(.34,1.36,.42,1) .80s forwards; }
+  html.anim .sprig-svg.go .la { animation: sprigSprout .9s cubic-bezier(.34,1.36,.42,1) .96s forwards; }
+
+  /* the living idle — hero sprig only, beginning after the entrance settles */
+  html.anim .sprig-svg--single .grp { transform-box: view-box; transform-origin: 150px 42px; }
+  html.anim .sprig-svg--single.go .grp { animation: sprigBreathe 6.8s ease-in-out 2s infinite; }
+}
+
+@keyframes sprigDraw { to { stroke-dashoffset: 0; } }
+@keyframes sprigSprout {
+  0%   { transform: scale(.05) rotate(-10deg); opacity: 0; }
+  34%  { opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+@keyframes sprigBreathe {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-1.4px) rotate(.6deg); }
 }
 
 /* ---------- Contact form states ---------- */

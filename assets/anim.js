@@ -14,7 +14,7 @@
     ].join(',');
 
     var reveals = [].slice.call(document.querySelectorAll(revealSel));
-    var lines = [].slice.call(document.querySelectorAll('.sprig-accent, .botdiv img'));
+    /* sprigs are handled by sprig.js (inline-SVG sprout), not the generic reveal */
 
     /* gentle stagger between siblings sharing a parent */
     var seen = (typeof Map === 'function') ? new Map() : null;
@@ -26,7 +26,7 @@
       });
     }
 
-    var all = reveals.concat(lines);
+    var all = reveals;
 
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
