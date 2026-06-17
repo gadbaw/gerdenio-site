@@ -382,7 +382,7 @@ section { padding: 84px 0; }
 .post-item .excerpt { color: var(--ink-soft); margin-bottom: 0.8em; }
 .post-item .more a { font-family: var(--sans); font-size: 0.95rem; color: var(--accent-dk); }
 
-.article { max-width: 720px; margin: 0 auto; }
+.article { max-width: 720px; margin: 0 auto; padding: 0 28px; }
 .article .byline { font-family: var(--sans); font-size: 1.02rem; color: var(--ink-soft); margin: 0.2em 0 0; }
 .article .standfirst {
   font-family: var(--serif); font-weight: 300; font-size: 1.34rem; line-height: 1.5;
