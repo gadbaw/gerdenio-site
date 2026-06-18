@@ -29,8 +29,8 @@
   <script defer src="assets/motion.js?v=3"></script>
   <!-- FOOTER-PLANTS -->
   <style>
-    .footer-plants{line-height:0;opacity:.64;}
-    .footer-plants svg{display:block;width:100%;height:auto;}
+    .footer-plants{line-height:0;background:var(--paper-2);margin-top:-1px;}
+    .footer-plants svg{display:block;width:100%;height:auto;opacity:.64;}
     .footer-plants .stem{fill:none;stroke:url(#fpStem);stroke-width:1.1;stroke-linecap:round;}
     .footer-plants .leaf{transform-box:fill-box;transform-origin:50% 100%;}
     html.anim .footer-plants .stem{stroke-dasharray:1;stroke-dashoffset:1;}
@@ -39,7 +39,7 @@
     html.anim .footer-plants.grow .leaf{animation:fpPop .55s cubic-bezier(.2,.85,.3,1) var(--d,0ms) forwards;}
     @keyframes fpDraw{to{stroke-dashoffset:0;}}
     @keyframes fpPop{to{transform:scale(1);}}
-    @media (max-width:700px){.footer-plants{opacity:.52;}}
+    @media (max-width:700px){.footer-plants svg{opacity:.52;}}
   </style>
 </head>
 <body>
