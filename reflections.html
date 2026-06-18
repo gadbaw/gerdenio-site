@@ -176,48 +176,37 @@
       }
       return path;
     }
-    function pts(cx, totalH){
-      var count=ri(18,42), dy=totalH/count, off=rand(0.006,0.018);
+    function pts(cx){
+      var count=ri(18,42), totalH=rand(40,128), dy=totalH/count, off=rand(0.006,0.018);
       var a=[cx,BASE], px=cx;
       for(var i=1;i<=count;i++){ px += i*off*(rand(0,21)-10); a.push(px, BASE-dy*i); }
       return a;
     }
-    function leafAt(stem, L, u, s, delay, dur, tip){
-      var at=u*L, pt=stem.getPointAtLength(at), ang;
-      if(tip){ var p2=stem.getPointAtLength(Math.max(0,at-3));
-        ang=Math.atan2(pt.y-p2.y, pt.x-p2.x)*180/Math.PI + 90 + rand(-12,12); }   // align to the stem tip
-      else { ang=(Math.random()<0.5?1:-1)*rand(22,82)+rand(-22,22); }
-      var ld=delay + u*dur + rand(-50,50), pd=rand(820,1180);
-      var g=el('g'); g.setAttribute('transform','translate('+pt.x.toFixed(1)+','+pt.y.toFixed(1)+') rotate('+ang.toFixed(0)+') scale('+s.toFixed(2)+')');
-      var lf=el('path'); lf.setAttribute('class','leaf'); lf.setAttribute('d',LEAF);
-      lf.setAttribute('fill', Math.random()<0.15?'url(#fpSun)':'url(#fpSky)');
-      lf.style.setProperty('--d', ld.toFixed(0)+'ms'); lf.style.setProperty('--pd', pd.toFixed(0)+'ms');
-      g.appendChild(lf); leavesG.appendChild(g);
-    }
-    // intentional size tiers: small / medium / big  [height, leafCount, strokeWidth, leafScale]
-    var TIERS=[
-      {h:[40,66],  lc:[4,8],   sw:[0.8,1.0], lf:[0.45,0.85]},
-      {h:[72,104], lc:[8,14],  sw:[1.0,1.2], lf:[0.55,1.05]},
-      {h:[108,140],lc:[13,20], sw:[1.1,1.4], lf:[0.60,1.20]}
-    ];
-    function plant(cx, delay, t){
-      var T=TIERS[t], dur=rand(2600,4600), sw=rand(T.sw[0],T.sw[1]), totalH=rand(T.h[0],T.h[1]);
+    function plant(cx, delay){
+      var dur=rand(2400,4400), sw=rand(0.9,1.4);
       var stem=el('path'); stem.setAttribute('class','stem'); stem.setAttribute('pathLength','1');
-      stem.setAttribute('d',solve(pts(cx,totalH))); stem.style.strokeWidth=sw.toFixed(2);
+      stem.setAttribute('d',solve(pts(cx))); stem.style.strokeWidth=sw.toFixed(2);
       stem.style.setProperty('--d',delay.toFixed(0)+'ms'); stem.style.setProperty('--dur',dur.toFixed(0)+'ms');
       stemsG.appendChild(stem);
-      var L=stem.getTotalLength(), nl=ri(T.lc[0],T.lc[1]);
-      for(var i=0;i<nl;i++){ var u=rand(0.12,0.9); leafAt(stem,L,u, rand(T.lf[0],T.lf[1])+(1-u)*rand(0.15,0.5), delay,dur,false); }
-      leafAt(stem, L, 1.0, rand(T.lf[0], T.lf[0]+0.3), delay, dur, true);   // terminal leaf — never a bare point
+      var L=stem.getTotalLength(), nl=ri(10,22);
+      for(var i=0;i<nl;i++){
+        var u=rand(0.12,0.98), at=u*L, pt=stem.getPointAtLength(at);
+        var side=i%2?1:-1, ang=side*rand(22,82)+rand(-22,22);
+        // bigger toward the base (small u), smaller toward the tip
+        var s=rand(0.5,0.78)+(1-u)*rand(0.4,0.95);
+        var ld=delay + u*dur + rand(-60,60);
+        var pd=rand(800,1200);
+        var g=el('g'); g.setAttribute('transform','translate('+pt.x.toFixed(1)+','+pt.y.toFixed(1)+') rotate('+ang.toFixed(0)+') scale('+s.toFixed(2)+')');
+        var lf=el('path'); lf.setAttribute('class','leaf'); lf.setAttribute('d',LEAF);
+        lf.setAttribute('fill', Math.random()<0.15?'url(#fpSun)':'url(#fpSky)');
+        lf.style.setProperty('--d', ld.toFixed(0)+'ms'); lf.style.setProperty('--pd', pd.toFixed(0)+'ms');
+        g.appendChild(lf); leavesG.appendChild(g);
+      }
     }
     function build(){
       stemsG.innerHTML=''; leavesG.innerHTML='';
-      var n=ri(12,16), raw=[], x=0;
-      // clustered spacing: mix of tight and wide gaps, then fit to width
-      for(var k=0;k<n;k++){ raw.push(x); x += (Math.random()<0.42? rand(16,38) : rand(64,140)); }
-      var span=raw[n-1]||1, M=46, tiers=[];
-      for(var k=0;k<n;k++){ var r=Math.random(); tiers.push(r<0.34?0:(r<0.72?1:2)); }
-      for(var k=0;k<n;k++){ plant(M + (raw[k]/span)*(W-2*M), rand(0,2400), tiers[k]); }
+      var n=ri(11,15), span=W/n;
+      for(var k=0;k<n;k++){ plant((k+0.5)*span + rand(-span*0.55, span*0.55), rand(0,2400)); }
     }
     build();
     if(anim && 'IntersectionObserver' in window){
