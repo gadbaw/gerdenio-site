@@ -27,20 +27,6 @@
   <script defer src="assets/sprig.js?v=1"></script>
   <script defer src="assets/anim.js?v=3"></script>
   <script defer src="assets/motion.js?v=3"></script>
-  <!-- FOOTER-PLANTS -->
-  <style>
-    .site-footer{position:relative;}
-    .footer-plants{position:absolute;left:0;right:0;bottom:100%;pointer-events:none;line-height:0;}
-    .footer-plants svg{display:block;width:100%;height:auto;opacity:.6;overflow:visible;}
-    .footer-plants .stem{fill:none;stroke:url(#fpStem);stroke-linecap:round;}
-    .footer-plants .leaf{transform-box:fill-box;transform-origin:50% 100%;}
-    html.anim .footer-plants .stem{stroke-dasharray:1;stroke-dashoffset:1;}
-    html.anim .footer-plants .leaf{transform:scale(0);}
-    html.anim .footer-plants.grow .stem{animation:fpDraw var(--dur,3200ms) linear var(--d,0ms) forwards;}
-    html.anim .footer-plants.grow .leaf{animation:fpPop var(--pd,1000ms) cubic-bezier(.2,.8,.3,1) var(--d,0ms) forwards;}
-    @keyframes fpDraw{to{stroke-dashoffset:0;}}
-    @keyframes fpPop{from{transform:scale(0);}to{transform:scale(1);}}
-  </style>
 </head>
 <body>
   <div class="page-veil" aria-hidden="true"></div>
@@ -100,7 +86,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="section-alt center" style="padding-bottom:180px;">
+  <section class="section-alt center">
     <div class="wrap read">
       <div class="botdiv center"><img src="assets/img/sprig-divider.svg?d=3" alt="" /></div>
       <h2>Don't miss the next one.</h2>
@@ -111,18 +97,6 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="footer-plants" aria-hidden="true">
-      <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax meet">
-        <defs>
-          <linearGradient id="fpStem" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9fb2d2"/><stop offset="1" stop-color="#c8d6ea"/></linearGradient>
-          <linearGradient id="fpSky" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#6f9fd2"/><stop offset="1" stop-color="#a8c4e6"/></linearGradient>
-          <linearGradient id="fpSun" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e8973a"/><stop offset="1" stop-color="#f1bd7c"/></linearGradient>
-        </defs>
-        <g id="fpStems"></g>
-        <g id="fpLeaves"></g>
-      </svg>
-    </div>
-
     <div class="wrap">
       <div class="footer-grid">
         <div>
@@ -156,63 +130,5 @@
       </div>
     </div>
   </footer>
-  <!-- FOOTER-PLANTS generator (osublake SVG Plant Generator; vanilla port, CSS draw) -->
-  <script>
-  (function(){
-    var host=document.querySelector('.footer-plants'); if(!host) return;
-    var svg=host.querySelector('svg'), NS="http://www.w3.org/2000/svg";
-    var stemsG=svg.querySelector('#fpStems'), leavesG=svg.querySelector('#fpLeaves');
-    var W=1200, BASE=144, anim=document.documentElement.classList.contains('anim');
-    var LEAF="M0,0 C4.2,-5 4.2,-12 0,-15.5 C-4.2,-12 -4.2,-5 0,0 Z";
-    function rand(a,b){return a+Math.random()*(b-a);}
-    function ri(a,b){return Math.round(rand(a,b));}
-    function el(t){return document.createElementNS(NS,t);}
-    function solve(d){
-      var n=d.length,last=n-4,path="M"+d[0]+","+d[1];
-      for(var i=0;i<n-2;i+=2){
-        var x0=i?d[i-2]:d[0],y0=i?d[i-1]:d[1],x1=d[i],y1=d[i+1],x2=d[i+2],y2=d[i+3];
-        var x3=i!==last?d[i+4]:x2,y3=i!==last?d[i+5]:y2;
-        path+="C"+((-x0+6*x1+x2)/6)+","+((-y0+6*y1+y2)/6)+" "+((x1+6*x2-x3)/6)+","+((y1+6*y2-y3)/6)+" "+x2+","+y2;
-      }
-      return path;
-    }
-    function pts(cx){
-      var count=ri(18,42), totalH=rand(40,128), dy=totalH/count, off=rand(0.006,0.018);
-      var a=[cx,BASE], px=cx;
-      for(var i=1;i<=count;i++){ px += i*off*(rand(0,21)-10); a.push(px, BASE-dy*i); }
-      return a;
-    }
-    function plant(cx, delay){
-      var dur=rand(2400,4400), sw=rand(0.9,1.4);
-      var stem=el('path'); stem.setAttribute('class','stem'); stem.setAttribute('pathLength','1');
-      stem.setAttribute('d',solve(pts(cx))); stem.style.strokeWidth=sw.toFixed(2);
-      stem.style.setProperty('--d',delay.toFixed(0)+'ms'); stem.style.setProperty('--dur',dur.toFixed(0)+'ms');
-      stemsG.appendChild(stem);
-      var L=stem.getTotalLength(), nl=ri(10,22);
-      for(var i=0;i<nl;i++){
-        var u=rand(0.12,0.98), at=u*L, pt=stem.getPointAtLength(at);
-        var side=i%2?1:-1, ang=side*rand(22,82)+rand(-22,22);
-        // bigger toward the base (small u), smaller toward the tip
-        var s=rand(0.5,0.78)+(1-u)*rand(0.4,0.95);
-        var ld=delay + u*dur + rand(-60,60);
-        var pd=rand(800,1200);
-        var g=el('g'); g.setAttribute('transform','translate('+pt.x.toFixed(1)+','+pt.y.toFixed(1)+') rotate('+ang.toFixed(0)+') scale('+s.toFixed(2)+')');
-        var lf=el('path'); lf.setAttribute('class','leaf'); lf.setAttribute('d',LEAF);
-        lf.setAttribute('fill', Math.random()<0.15?'url(#fpSun)':'url(#fpSky)');
-        lf.style.setProperty('--d', ld.toFixed(0)+'ms'); lf.style.setProperty('--pd', pd.toFixed(0)+'ms');
-        g.appendChild(lf); leavesG.appendChild(g);
-      }
-    }
-    function build(){
-      stemsG.innerHTML=''; leavesG.innerHTML='';
-      var n=ri(11,15), span=W/n;
-      for(var k=0;k<n;k++){ plant((k+0.5)*span + rand(-span*0.55, span*0.55), rand(0,2400)); }
-    }
-    build();
-    if(anim && 'IntersectionObserver' in window){
-      new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){host.classList.add('grow'); o.disconnect();}});},{threshold:.05}).observe(host);
-    }
-  })();
-  </script>
 </body>
 </html>
