@@ -40,6 +40,8 @@
     html.anim .footer-plants.grow .leaf{animation:fpPop var(--pd,1000ms) cubic-bezier(.2,.8,.3,1) var(--d,0ms) forwards;}
     @keyframes fpDraw{to{stroke-dashoffset:0;}}
     @keyframes fpPop{from{transform:scale(0);}to{transform:scale(1);}}
+    .fp-cta{padding-bottom:180px;}
+    @media (max-width:620px){ .fp-cta{padding-bottom:96px;} .footer-plants svg{opacity:.68;} }
   </style>
 </head>
 <body>
@@ -148,7 +150,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="section-alt center" style="padding-bottom:180px;">
+  <section class="section-alt center fp-cta">
     <div class="wrap read">
       <h2>Considering therapy?</h2>
       <p>We welcome your questions about psychotherapy, our practice, and whether our work might be a good fit. Reaching out is a first step, not a commitment.</p>
@@ -209,7 +211,9 @@
     var host=document.querySelector('.footer-plants'); if(!host) return;
     var svg=host.querySelector('svg'), NS="http://www.w3.org/2000/svg";
     var stemsG=svg.querySelector('#fpStems'), leavesG=svg.querySelector('#fpLeaves');
-    var W=1200, BASE=144, anim=document.documentElement.classList.contains('anim');
+    var mobile=(window.innerWidth||1200)<=620;
+    var W=mobile?460:1200, BASE=144, anim=document.documentElement.classList.contains('anim');
+    svg.setAttribute('viewBox','0 0 '+W+' 150');
     var LEAF="M0,0 C4.2,-5 4.2,-12 0,-15.5 C-4.2,-12 -4.2,-5 0,0 Z";
     function rand(a,b){return a+Math.random()*(b-a);}
     function ri(a,b){return Math.round(rand(a,b));}
@@ -252,7 +256,7 @@
     }
     function build(){
       stemsG.innerHTML=''; leavesG.innerHTML='';
-      var n=ri(11,15), span=W/n;
+      var n=mobile?ri(6,9):ri(11,15), span=W/n;
       for(var k=0;k<n;k++){ plant((k+0.5)*span + rand(-span*0.55, span*0.55), rand(0,2400)); }
     }
     build();
