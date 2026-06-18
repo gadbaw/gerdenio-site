@@ -29,17 +29,17 @@
   <script defer src="assets/motion.js?v=3"></script>
   <!-- FOOTER-PLANTS -->
   <style>
-    .footer-plants{line-height:0;background:var(--paper-2);margin-top:-1px;}
-    .footer-plants svg{display:block;width:100%;height:auto;opacity:.64;}
-    .footer-plants .stem{fill:none;stroke:url(#fpStem);stroke-width:1.1;stroke-linecap:round;}
+    .site-footer{position:relative;}
+    .footer-plants{position:absolute;left:0;right:0;bottom:100%;pointer-events:none;line-height:0;}
+    .footer-plants svg{display:block;width:100%;height:auto;opacity:.6;overflow:visible;}
+    .footer-plants .stem{fill:none;stroke:url(#fpStem);stroke-linecap:round;}
     .footer-plants .leaf{transform-box:fill-box;transform-origin:50% 100%;}
     html.anim .footer-plants .stem{stroke-dasharray:1;stroke-dashoffset:1;}
     html.anim .footer-plants .leaf{transform:scale(0);}
-    html.anim .footer-plants.grow .stem{animation:fpDraw var(--dur,1800ms) ease var(--d,0ms) forwards;}
-    html.anim .footer-plants.grow .leaf{animation:fpPop .55s cubic-bezier(.2,.85,.3,1) var(--d,0ms) forwards;}
+    html.anim .footer-plants.grow .stem{animation:fpDraw var(--dur,3200ms) linear var(--d,0ms) forwards;}
+    html.anim .footer-plants.grow .leaf{animation:fpPop var(--pd,1000ms) cubic-bezier(.2,.8,.3,1) var(--d,0ms) forwards;}
     @keyframes fpDraw{to{stroke-dashoffset:0;}}
-    @keyframes fpPop{to{transform:scale(1);}}
-    @media (max-width:700px){.footer-plants svg{opacity:.52;}}
+    @keyframes fpPop{from{transform:scale(0);}to{transform:scale(1);}}
   </style>
 </head>
 <body>
@@ -100,7 +100,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="section-alt center">
+  <section class="section-alt center" style="padding-bottom:180px;">
     <div class="wrap read">
       <div class="botdiv center"><img src="assets/img/sprig-divider.svg?d=3" alt="" /></div>
       <h2>Don't miss the next one.</h2>
@@ -109,20 +109,20 @@
     </div>
   </section>
 
-  <div class="footer-plants" aria-hidden="true">
-    <svg viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax meet">
-      <defs>
-        <linearGradient id="fpStem" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#aebfda"/><stop offset="1" stop-color="#cfdcec"/></linearGradient>
-        <linearGradient id="fpSky" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#6f9fd2"/><stop offset="1" stop-color="#a8c4e6"/></linearGradient>
-        <linearGradient id="fpSun" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e8973a"/><stop offset="1" stop-color="#f1bd7c"/></linearGradient>
-      </defs>
-      <g id="fpStems"></g>
-      <g id="fpLeaves"></g>
-    </svg>
-  </div>
-
   <!-- FOOTER -->
   <footer class="site-footer">
+    <div class="footer-plants" aria-hidden="true">
+      <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax meet">
+        <defs>
+          <linearGradient id="fpStem" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9fb2d2"/><stop offset="1" stop-color="#c8d6ea"/></linearGradient>
+          <linearGradient id="fpSky" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#6f9fd2"/><stop offset="1" stop-color="#a8c4e6"/></linearGradient>
+          <linearGradient id="fpSun" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e8973a"/><stop offset="1" stop-color="#f1bd7c"/></linearGradient>
+        </defs>
+        <g id="fpStems"></g>
+        <g id="fpLeaves"></g>
+      </svg>
+    </div>
+
     <div class="wrap">
       <div class="footer-grid">
         <div>
@@ -156,15 +156,16 @@
       </div>
     </div>
   </footer>
-  <!-- FOOTER-PLANTS generator (osublake SVG Plant Generator, ported to vanilla + CSS draw) -->
+  <!-- FOOTER-PLANTS generator (osublake SVG Plant Generator; vanilla port, CSS draw) -->
   <script>
   (function(){
     var host=document.querySelector('.footer-plants'); if(!host) return;
     var svg=host.querySelector('svg'), NS="http://www.w3.org/2000/svg";
     var stemsG=svg.querySelector('#fpStems'), leavesG=svg.querySelector('#fpLeaves');
-    var W=1200, BASE=196, anim=document.documentElement.classList.contains('anim');
+    var W=1200, BASE=144, anim=document.documentElement.classList.contains('anim');
     var LEAF="M0,0 C4.2,-5 4.2,-12 0,-15.5 C-4.2,-12 -4.2,-5 0,0 Z";
     function rand(a,b){return a+Math.random()*(b-a);}
+    function ri(a,b){return Math.round(rand(a,b));}
     function el(t){return document.createElementNS(NS,t);}
     function solve(d){
       var n=d.length,last=n-4,path="M"+d[0]+","+d[1];
@@ -176,35 +177,40 @@
       return path;
     }
     function pts(cx){
-      var n=Math.round(rand(16,26)),tot=rand(74,168),step=tot/n,a=[cx,BASE],px=cx;
-      for(var i=1;i<=n;i++){px+=(i*0.04)*(rand(0,21)-10); a.push(px,BASE-step*i);}
+      var count=ri(18,42), totalH=rand(40,128), dy=totalH/count, off=rand(0.006,0.018);
+      var a=[cx,BASE], px=cx;
+      for(var i=1;i<=count;i++){ px += i*off*(rand(0,21)-10); a.push(px, BASE-dy*i); }
       return a;
     }
-    function plant(cx,delay){
-      var dur=rand(1500,2300);
-      var stem=el('path'); stem.setAttribute('class','stem'); stem.setAttribute('pathLength','1'); stem.setAttribute('d',solve(pts(cx)));
-      stem.style.setProperty('--d',delay+'ms'); stem.style.setProperty('--dur',dur+'ms');
+    function plant(cx, delay){
+      var dur=rand(2400,4400), sw=rand(0.9,1.4);
+      var stem=el('path'); stem.setAttribute('class','stem'); stem.setAttribute('pathLength','1');
+      stem.setAttribute('d',solve(pts(cx))); stem.style.strokeWidth=sw.toFixed(2);
+      stem.style.setProperty('--d',delay.toFixed(0)+'ms'); stem.style.setProperty('--dur',dur.toFixed(0)+'ms');
       stemsG.appendChild(stem);
-      var L=stem.getTotalLength(), nl=Math.round(rand(7,12));
+      var L=stem.getTotalLength(), nl=ri(10,22);
       for(var i=0;i<nl;i++){
-        var u=rand(0.16,0.97), at=u*L, pt=stem.getPointAtLength(at);
-        var side=i%2?1:-1, ang=side*rand(34,74)+rand(-10,10), s=rand(0.62,1.02);
-        var ld=delay + u*dur + rand(-40,40);
+        var u=rand(0.12,0.98), at=u*L, pt=stem.getPointAtLength(at);
+        var side=i%2?1:-1, ang=side*rand(22,82)+rand(-22,22);
+        // bigger toward the base (small u), smaller toward the tip
+        var s=rand(0.5,0.78)+(1-u)*rand(0.4,0.95);
+        var ld=delay + u*dur + rand(-60,60);
+        var pd=rand(800,1200);
         var g=el('g'); g.setAttribute('transform','translate('+pt.x.toFixed(1)+','+pt.y.toFixed(1)+') rotate('+ang.toFixed(0)+') scale('+s.toFixed(2)+')');
         var lf=el('path'); lf.setAttribute('class','leaf'); lf.setAttribute('d',LEAF);
-        lf.setAttribute('fill', Math.random()<0.16?'url(#fpSun)':'url(#fpSky)');
-        lf.style.setProperty('--d', ld.toFixed(0)+'ms');
+        lf.setAttribute('fill', Math.random()<0.15?'url(#fpSun)':'url(#fpSky)');
+        lf.style.setProperty('--d', ld.toFixed(0)+'ms'); lf.style.setProperty('--pd', pd.toFixed(0)+'ms');
         g.appendChild(lf); leavesG.appendChild(g);
       }
     }
     function build(){
       stemsG.innerHTML=''; leavesG.innerHTML='';
-      var n=Math.round(rand(9,12)), margin=70, span=(W-2*margin)/(n-1);
-      for(var k=0;k<n;k++){ plant(margin+k*span+rand(-22,22), k*110+rand(0,240)); }
+      var n=ri(11,15), span=W/n;
+      for(var k=0;k<n;k++){ plant((k+0.5)*span + rand(-span*0.55, span*0.55), rand(0,2400)); }
     }
     build();
     if(anim && 'IntersectionObserver' in window){
-      new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){host.classList.add('grow'); o.disconnect();}});},{threshold:.12}).observe(host);
+      new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){host.classList.add('grow'); o.disconnect();}});},{threshold:.05}).observe(host);
     }
   })();
   </script>
