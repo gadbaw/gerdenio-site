@@ -104,12 +104,21 @@ section { padding: 84px 0; }
 .brand a:hover { text-decoration: none; color: var(--accent-dk); }
 .brand small {
   display: block;
-  font-family: var(--sans);
   font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   color: var(--muted);
-  margin-top: 2px;
+  margin-top: 3px;
+}
+.brand small .for {            /* de-emphasized connective — italic serif, lowercase */
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2em;
+  line-height: 1;
+}
+.brand small .disc {           /* the discipline — tracked sans caps */
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-left: 0.34em;
 }
 .nav-links { display: flex; gap: 28px; align-items: center; }
 .nav-links a {
@@ -274,6 +283,7 @@ section { padding: 84px 0; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
 .site-footer h4 { color: #fff; font-family: var(--sans); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 14px; }
 .site-footer .brand-foot { font-family: var(--serif); font-size: 1.3rem; letter-spacing: -0.012em; color: #fff; }
+.site-footer .brand-foot em { font-style: italic; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { padding: 4px 0; }
 .footer-base { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; color: #9aa4ab; }
