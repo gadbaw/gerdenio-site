@@ -95,7 +95,7 @@ section { padding: 84px 0; }
 }
 .brand {
   font-family: var(--serif);
-  font-size: 1.12rem;
+  font-size: 1.38rem;
   color: var(--ink);
   line-height: 1.15;
   letter-spacing: -0.012em;
@@ -104,7 +104,7 @@ section { padding: 84px 0; }
 .brand a:hover { text-decoration: none; color: var(--accent-dk); }
 .brand small {
   display: block;
-  font-size: 0.66rem;
+  font-size: 0.59em;   /* scales with the brand size so the lockup grows as one */
   color: var(--muted);
   margin-top: 1px;   /* tightened lockup to match wordmark leading (gap 114, ~13.6% tighter than the prior 3px) */
 }
