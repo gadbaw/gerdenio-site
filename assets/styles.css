@@ -91,19 +91,20 @@ section { padding: 84px 0; }
 }
 .nav {
   display: flex; align-items: center; justify-content: space-between;
-  max-width: var(--maxw); margin: 0 auto; padding: 16px 28px;
+  max-width: var(--maxw); margin: 0 auto; padding: 15px 28px 24px;
 }
 .brand {
   font-family: var(--serif);
-  font-size: 1.38rem;
+  font-size: 1.5rem;
   color: var(--ink);
   line-height: 1.15;
   letter-spacing: -0.012em;
 }
-.brand a { color: var(--ink); }
+.brand a { color: var(--ink); position: relative; display: inline-block; }
 .brand a:hover { text-decoration: none; color: var(--accent-dk); }
 .brand small {
-  display: block;
+  /* out of flow so the menu aligns to the name line; the descriptor hangs below */
+  position: absolute; top: 100%; left: 0; white-space: nowrap;
   font-size: 0.59em;   /* scales with the brand size so the lockup grows as one */
   color: var(--muted);
   margin-top: 1px;   /* tightened lockup to match wordmark leading (gap 114, ~13.6% tighter than the prior 3px) */
@@ -304,7 +305,7 @@ section { padding: 84px 0; }
   .person { grid-template-columns: 1fr; gap: 24px; }
   .person .portrait { max-width: 280px; }
   .nav-links {
-    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
     flex-direction: column; gap: 0; background: var(--paper);
     border-bottom: 1px solid var(--line); padding: 8px 28px 18px;
   }
