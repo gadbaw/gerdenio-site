@@ -510,3 +510,13 @@ section { padding: 84px 0; }
 
 /* native anchor scrolling lands below the sticky header */
 :target { scroll-margin-top: 90px; }
+
+/* homily series (Reflections) — compact archive list */
+.homily-list { max-width: var(--readw); margin: 0 auto; }
+.homily-item { padding: 26px 0; border-top: 1px solid var(--line); }
+.homily-item:first-child { border-top: 0; padding-top: 8px; }
+.homily-item .when { font-family: var(--sans); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.homily-item h3 { font-size: 1.42rem; margin: 0 0 6px; }
+.homily-item h3 a { color: var(--ink); }
+.homily-item h3 a:hover { color: var(--accent-dk); text-decoration: none; }
+.homily-item .line { color: var(--ink-soft); font-size: 0.99rem; line-height: 1.6; margin: 0; }
