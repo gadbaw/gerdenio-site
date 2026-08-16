@@ -1,0 +1,8 @@
+# gerdenio.com
+# Everything here is public practice information and is meant to be indexed.
+# Patient material lives on portal.gerdenio.com behind one-time links and is
+# never reachable from this site.
+User-agent: *
+Allow: /
+
+Sitemap: https://gerdenio.com/sitemap.xml
