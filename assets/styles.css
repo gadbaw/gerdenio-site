@@ -521,14 +521,30 @@ section { padding: 84px 0; }
 .homily-item h3 a:hover { color: var(--accent-dk); text-decoration: none; }
 .homily-item .line { color: var(--ink-soft); font-size: 0.99rem; line-height: 1.6; margin: 0; }
 
-/* ---------- Guest poems (Reflections) ---------- */
-.article-body .stanza {
+/* ---------- Guest poems (Reflections) ----------
+   Set like a printed poem: the block shrink-wraps and centers on its
+   longest line; each line is its own box with a hanging indent, so
+   soft-wrapped continuations on small screens indent instead of
+   reading as new lines. */
+.poem {
+  width: fit-content;  /* shrink-to-fit, centered on the longest line */
+  max-width: 100%;     /* …but wrap (hanging indent) on small screens */
+  margin: 10px auto 6px;
+}
+.poem .stanza { margin: 0 0 1.55em; }
+.poem .stanza:last-child { margin-bottom: 0; }
+.poem .l {
+  display: block;
   font-family: var(--serif);
-  font-size: 1.16rem;
-  line-height: 1.62;
+  font-size: 1.18rem;
+  line-height: 1.58;
   color: var(--ink-soft);
-  white-space: pre-line;
-  margin: 0 0 1.7em;
+  padding-left: 1.6em;
+  text-indent: -1.6em;
+}
+.poem .l:first-child::first-letter { letter-spacing: 0.01em; }
+@media (max-width: 560px) {
+  .poem .l { font-size: 1.1rem; }
 }
 
 /* ---------- Audio reading player ---------- */
