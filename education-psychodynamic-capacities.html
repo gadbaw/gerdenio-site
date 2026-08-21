@@ -28,13 +28,23 @@
   <script defer src="assets/motion.js?v=3"></script>
   <script defer src="assets/analytics.js?v=1"></script>
   <style>
-    .event-layout { display: grid; grid-template-columns: 1fr 460px; gap: 72px; align-items: start; }
+    .event-layout { display: grid; grid-template-columns: 1fr 360px; gap: 64px; align-items: start; }
     .event-meta { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 18px 0 22px; }
     .event-meta span { font-size: 0.82rem; font-weight: 600; color: var(--accent-dk);
       background: var(--accent-soft); border-radius: 999px; padding: 6px 13px; }
-    /* the portrait carries the page: a wide column that rides along as you read */
-    .event-photo { position: sticky; top: 96px; margin: 0; }
-    .event-photo img { width: 100%; border-radius: 16px; display: block; }
+    /* the portrait carries the page: a wide column that rides along as you read.
+       Sticky needs headroom to travel, so the grid item (.photo-col) stretches to
+       the full row height and the figure pins inside it. */
+    .photo-col { align-self: stretch; }
+    .event-photo { position: sticky; top: 110px; margin: 0; }
+    /* organic bezier mask (SVG clipPath defs at the top of <body>) + a soft
+       dawn-tinted echo blob behind, offset up-and-right */
+    .event-photo img { position: relative; z-index: 1; width: 100%; display: block;
+      clip-path: url(#gm-blob-a); }
+    .blob-glow { position: absolute; z-index: 0; top: -5%; right: -7%;
+      width: 94%; height: 94%;
+      background: linear-gradient(150deg, var(--accent-soft) 15%, #f6e6cf 90%);
+      clip-path: url(#gm-blob-b); }
     .objectives { margin: 10px 0 0; padding: 0 0 0 1.2em; }
     .objectives li { margin-bottom: 10px; line-height: 1.6; }
     .register-card { background: #fff; border: 1px solid var(--line); border-radius: 16px;
@@ -42,11 +52,27 @@
     #webinar-form.is-sent .field, #webinar-form.is-sent button, #webinar-form.is-sent .hp { display: none; }
     @media (max-width: 900px) {
       .event-layout { grid-template-columns: 1fr; gap: 32px; }
-      .event-photo { order: -1; position: static; max-width: none; }
+      .photo-col { order: -1; }
+      .event-photo { position: static; max-width: 360px; margin: 0 auto; }
     }
   </style>
 </head>
 <body>
+  <!-- organic portrait masks: smooth closed bezier blobs in objectBoundingBox units -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <clipPath id="gm-blob-a" clipPathUnits="objectBoundingBox">
+        <path d="M .500 .018 C .672 .004 .848 .076 .924 .232 C .996 .384 .988 .576 .924 .732
+                 C .858 .892 .700 .992 .520 .988 C .336 .984 .156 .916 .072 .756
+                 C -.008 .604 .004 .396 .088 .240 C .168 .092 .332 .032 .500 .018 Z" />
+      </clipPath>
+      <clipPath id="gm-blob-b" clipPathUnits="objectBoundingBox">
+        <path d="M .460 .040 C .660 -.020 .880 .080 .950 .280 C 1.015 .470 .945 .670 .840 .810
+                 C .725 .960 .530 1.010 .345 .955 C .165 .900 .025 .750 .012 .555
+                 C .000 .360 .110 .150 .295 .080 C .350 .058 .405 .056 .460 .040 Z" />
+      </clipPath>
+    </defs>
+  </svg>
   <div class="page-veil" aria-hidden="true"></div>
   <header class="site-header">
     <nav class="nav">
@@ -123,9 +149,12 @@
           </form>
         </div>
       </div>
-      <figure class="event-photo">
-        <img src="assets/img/max-levine.jpg?v=3" alt="Max Levine, Psy.D." />
-      </figure>
+      <div class="photo-col">
+        <figure class="event-photo">
+          <div class="blob-glow" aria-hidden="true"></div>
+          <img src="assets/img/max-levine.jpg?v=4" alt="Max Levine, Psy.D." />
+        </figure>
+      </div>
     </div>
   </section>
 
