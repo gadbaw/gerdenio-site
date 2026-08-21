@@ -36,9 +36,7 @@
       background: var(--accent-soft); border-radius: 999px; padding: 6px 13px; }
     .event-when { font-size: 1.02rem; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
     .event-photo { position: relative; margin: 0; }
-    .event-photo img { position: relative; z-index: 1; width: 100%; display: block; clip-path: url(#gm-blob-a); }
-    .blob-glow { position: absolute; z-index: 0; top: -5%; right: -7%; width: 94%; height: 94%;
-      background: linear-gradient(150deg, var(--accent-soft) 15%, #f6e6cf 90%); clip-path: url(#gm-blob-b); }
+    .event-photo svg.portrait-blob { width: 100%; height: auto; display: block; overflow: visible; }
     .register-panel { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 28px; }
     @media (max-width: 780px) {
       .event-card { grid-template-columns: 1fr; padding: 28px; }
@@ -47,42 +45,6 @@
   </style>
 </head>
 <body>
-  <!-- organic portrait masks: smooth closed bezier blobs in objectBoundingBox units -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <clipPath id="gm-blob-a" clipPathUnits="objectBoundingBox">
-        <path d="M .455 .030 C .640 -.008 .856 .058 .932 .214 C 1.004 .360 .984 .540 .914 .690 C .842 .850 .694 .978 .500 .994 C .306 1.010 .112 .926 .044 .748 C -.022 .576 .008 .364 .104 .212 C .190 .074 .295 .062 .455 .030 Z">
-          <animate class="gm-morph" attributeName="d" begin="indefinite"
-                   dur="26s" repeatCount="indefinite" calcMode="spline"
-                   keyTimes="0;.35;.7;1" keySplines=".4 0 .6 1;.4 0 .6 1;.4 0 .6 1"
-                   values="M .455 .030 C .640 -.008 .856 .058 .932 .214 C 1.004 .360 .984 .540 .914 .690 C .842 .850 .694 .978 .500 .994 C .306 1.010 .112 .926 .044 .748 C -.022 .576 .008 .364 .104 .212 C .190 .074 .295 .062 .455 .030 Z;
-                   M .462 .026 C .655 -.014 .862 .066 .936 .222 C 1.010 .372 .978 .548 .906 .696 C .834 .856 .688 .984 .494 .996 C .298 1.006 .108 .918 .048 .738 C -.014 .566 .002 .356 .110 .206 C .198 .068 .300 .058 .462 .026 Z;
-                   M .448 .034 C .630 .000 .848 .052 .926 .208 C .998 .352 .990 .534 .920 .684 C .850 .842 .700 .972 .508 .990 C .312 1.012 .118 .932 .040 .756 C -.028 .584 .012 .370 .098 .218 C .184 .080 .290 .066 .448 .034 Z;
-                   M .455 .030 C .640 -.008 .856 .058 .932 .214 C 1.004 .360 .984 .540 .914 .690 C .842 .850 .694 .978 .500 .994 C .306 1.010 .112 .926 .044 .748 C -.022 .576 .008 .364 .104 .212 C .190 .074 .295 .062 .455 .030 Z" />
-        </path>
-      </clipPath>
-      <clipPath id="gm-blob-b" clipPathUnits="objectBoundingBox">
-        <path d="M .420 .055 C .620 -.030 .875 .065 .955 .265 C 1.025 .445 .955 .640 .858 .790 C .748 .958 .540 1.015 .350 .955 C .160 .895 .015 .740 .008 .540 C .002 .345 .105 .155 .280 .090 C .330 .072 .370 .076 .420 .055 Z">
-          <animate class="gm-morph" attributeName="d" begin="indefinite"
-                   dur="34s" repeatCount="indefinite" calcMode="spline"
-                   keyTimes="0;.35;.7;1" keySplines=".4 0 .6 1;.4 0 .6 1;.4 0 .6 1"
-                   values="M .420 .055 C .620 -.030 .875 .065 .955 .265 C 1.025 .445 .955 .640 .858 .790 C .748 .958 .540 1.015 .350 .955 C .160 .895 .015 .740 .008 .540 C .002 .345 .105 .155 .280 .090 C .330 .072 .370 .076 .420 .055 Z;
-                   M .430 .048 C .640 -.040 .885 .075 .960 .275 C 1.030 .455 .945 .655 .845 .800 C .735 .965 .530 1.020 .340 .950 C .150 .885 .010 .725 .006 .528 C .002 .335 .115 .148 .292 .085 C .340 .068 .380 .072 .430 .048 Z;
-                   M .412 .062 C .605 -.020 .862 .058 .948 .258 C 1.018 .438 .962 .630 .866 .782 C .758 .950 .548 1.008 .358 .960 C .168 .905 .022 .752 .010 .550 C .000 .352 .098 .162 .272 .095 C .322 .076 .362 .080 .412 .062 Z;
-                   M .420 .055 C .620 -.030 .875 .065 .955 .265 C 1.025 .445 .955 .640 .858 .790 C .748 .958 .540 1.015 .350 .955 C .160 .895 .015 .740 .008 .540 C .002 .345 .105 .155 .280 .090 C .330 .072 .370 .076 .420 .055 Z" />
-        </path>
-      </clipPath>
-    </defs>
-  </svg>
-  <script>
-  /* the portrait blob breathes, lava-lamp slow; still for prefers-reduced-motion */
-  (function () {
-    try {
-      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      document.querySelectorAll('.gm-morph').forEach(function (a) { a.beginElement(); });
-    } catch (e) {}
-  })();
-  </script>
   <div class="page-veil" aria-hidden="true"></div>
   <header class="site-header">
     <nav class="nav">
@@ -135,8 +97,43 @@
           </div>
         </div>
         <figure class="event-photo">
-          <div class="blob-glow" aria-hidden="true"></div>
-          <a href="education-psychodynamic-capacities.html"><img src="assets/img/max-levine.jpg?v=4" alt="Max Levine, Psy.D." /></a>
+          <a href="education-psychodynamic-capacities.html"><svg class="portrait-blob" viewBox="0 0 880 990" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Max Levine, Psy.D.">
+            <defs>
+              <clipPath id="gm-pA">
+                <path d="M 400.4 29.7 C 563.2 -7.9 753.3 57.4 820.2 211.9 C 883.5 356.4 865.9 534.6 804.3 683.1 C 741.0 841.5 610.7 968.2 440.0 984.1 C 269.3 999.9 98.6 916.7 38.7 740.5 C -19.4 570.2 7.0 360.4 91.5 209.9 C 167.2 73.3 259.6 61.4 400.4 29.7 Z">
+                  <animate class="gm-morph" attributeName="d" begin="indefinite" dur="22s"
+                     repeatCount="indefinite" calcMode="spline" keyTimes="0;.35;.7;1"
+                     keySplines=".4 0 .6 1;.4 0 .6 1;.4 0 .6 1"
+                     values="M 400.4 29.7 C 563.2 -7.9 753.3 57.4 820.2 211.9 C 883.5 356.4 865.9 534.6 804.3 683.1 C 741.0 841.5 610.7 968.2 440.0 984.1 C 269.3 999.9 98.6 916.7 38.7 740.5 C -19.4 570.2 7.0 360.4 91.5 209.9 C 167.2 73.3 259.6 61.4 400.4 29.7 Z;
+                     M 411.5 22.6 C 587.0 -18.6 762.8 71.7 826.5 226.1 C 893.0 377.8 856.4 548.9 791.6 693.8 C 728.3 852.2 601.2 978.9 430.5 987.6 C 256.6 992.8 92.2 902.5 45.1 722.7 C -6.7 552.4 -2.5 346.1 101.0 199.2 C 179.9 62.6 267.5 54.3 411.5 22.6 Z;
+                     M 389.3 36.8 C 547.4 6.3 740.6 46.7 810.7 201.2 C 874.0 342.1 875.4 523.9 813.8 672.4 C 753.6 827.2 620.2 957.5 452.7 976.9 C 278.8 1003.5 108.1 927.4 32.4 754.8 C -28.9 584.5 13.4 371.1 82.0 220.6 C 157.7 84.0 251.7 68.5 389.3 36.8 Z;
+                     M 400.4 29.7 C 563.2 -7.9 753.3 57.4 820.2 211.9 C 883.5 356.4 865.9 534.6 804.3 683.1 C 741.0 841.5 610.7 968.2 440.0 984.1 C 269.3 999.9 98.6 916.7 38.7 740.5 C -19.4 570.2 7.0 360.4 91.5 209.9 C 167.2 73.3 259.6 61.4 400.4 29.7 Z" />
+                </path>
+              </clipPath>
+              <linearGradient id="gm-glow-fill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="15%" stop-color="#e6eef9"/><stop offset="90%" stop-color="#f6e6cf"/>
+              </linearGradient>
+            </defs>
+            <g>
+              <animateTransform class="gm-morph" attributeName="transform" type="translate"
+                 begin="indefinite" dur="16s" repeatCount="indefinite" calcMode="spline"
+                 keyTimes="0;.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"
+                 values="72 -44; 52 -26; 72 -44" />
+              <g transform="scale(.94)">
+                <path fill="url(#gm-glow-fill)" d="M 369.6 54.5 C 545.6 -29.7 770.0 64.4 840.4 262.4 C 902.0 440.6 840.4 633.6 755.0 782.1 C 658.2 948.4 475.2 1004.8 308.0 945.4 C 140.8 886.1 13.2 732.6 7.0 534.6 C 1.8 341.5 92.4 153.4 246.4 89.1 C 290.4 71.3 325.6 75.2 369.6 54.5 Z">
+                  <animate class="gm-morph" attributeName="d" begin="indefinite" dur="30s"
+                     repeatCount="indefinite" calcMode="spline" keyTimes="0;.35;.7;1"
+                     keySplines=".4 0 .6 1;.4 0 .6 1;.4 0 .6 1"
+                     values="M 369.6 54.5 C 545.6 -29.7 770.0 64.4 840.4 262.4 C 902.0 440.6 840.4 633.6 755.0 782.1 C 658.2 948.4 475.2 1004.8 308.0 945.4 C 140.8 886.1 13.2 732.6 7.0 534.6 C 1.8 341.5 92.4 153.4 246.4 89.1 C 290.4 71.3 325.6 75.2 369.6 54.5 Z;
+                     M 385.4 42.0 C 577.3 -47.5 785.8 82.2 848.3 280.2 C 909.9 458.4 824.6 660.3 734.4 799.9 C 637.6 960.9 459.4 1013.8 292.2 936.5 C 125.0 868.2 5.3 705.9 3.9 513.2 C 1.8 323.7 108.2 141.0 265.4 80.2 C 306.2 64.2 341.4 68.1 385.4 42.0 Z;
+                     M 356.9 66.9 C 521.8 -11.9 749.4 51.9 829.3 249.9 C 890.9 428.1 851.5 615.8 767.7 767.8 C 674.1 934.2 487.9 992.4 320.7 954.4 C 153.5 903.9 24.3 754.0 10.2 552.4 C -1.4 354.0 81.3 165.9 233.7 98.0 C 277.7 78.4 312.9 82.4 356.9 66.9 Z;
+                     M 369.6 54.5 C 545.6 -29.7 770.0 64.4 840.4 262.4 C 902.0 440.6 840.4 633.6 755.0 782.1 C 658.2 948.4 475.2 1004.8 308.0 945.4 C 140.8 886.1 13.2 732.6 7.0 534.6 C 1.8 341.5 92.4 153.4 246.4 89.1 C 290.4 71.3 325.6 75.2 369.6 54.5 Z" />
+                </path>
+              </g>
+            </g>
+            <image href="assets/img/max-levine.jpg?v=4" width="880" height="990"
+                   preserveAspectRatio="xMidYMid slice" clip-path="url(#gm-pA)"/>
+          </svg></a>
         </figure>
       </div>
     </div>
@@ -192,5 +189,14 @@
     </div>
   </footer>
 
+  <script>
+  /* the portrait blob breathes, lava-lamp slow; still for prefers-reduced-motion */
+  (function () {
+    try {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.querySelectorAll('.gm-morph').forEach(function (a) { a.beginElement(); });
+    } catch (e) {}
+  })();
+  </script>
 </body>
 </html>
