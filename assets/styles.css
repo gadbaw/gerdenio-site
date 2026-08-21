@@ -520,3 +520,91 @@ section { padding: 84px 0; }
 .homily-item h3 a { color: var(--ink); }
 .homily-item h3 a:hover { color: var(--accent-dk); text-decoration: none; }
 .homily-item .line { color: var(--ink-soft); font-size: 0.99rem; line-height: 1.6; margin: 0; }
+
+/* ---------- Guest poems (Reflections) ---------- */
+.article-body .stanza {
+  font-family: var(--serif);
+  font-size: 1.16rem;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  white-space: pre-line;
+  margin: 0 0 1.7em;
+}
+
+/* ---------- Audio reading player ---------- */
+.audio-reading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  border-radius: 14px;
+  padding: 16px 22px;
+  margin: 6px 0 44px;
+}
+.audio-reading .play-btn {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  transition: background 0.2s ease;
+}
+.audio-reading .play-btn:hover { background: var(--accent-dk); }
+.audio-reading .play-btn svg { width: 22px; height: 22px; }
+.audio-reading .audio-main { flex: 1 1 auto; min-width: 0; }
+.audio-reading .audio-label {
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+.audio-reading input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--accent) var(--p, 0%), #cfdcf0 var(--p, 0%));
+  outline: none;
+  margin: 0;
+  cursor: pointer;
+}
+.audio-reading input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-dk);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(32, 48, 74, 0.25);
+}
+.audio-reading input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-dk);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(32, 48, 74, 0.25);
+}
+.audio-reading .audio-time {
+  flex: 0 0 auto;
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+@media (max-width: 560px) {
+  .audio-reading { padding: 14px 16px; gap: 12px; }
+  .audio-reading .play-btn { width: 46px; height: 46px; }
+}
