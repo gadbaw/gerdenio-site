@@ -45,9 +45,21 @@
       width: 94%; height: 94%;
       background: linear-gradient(150deg, var(--accent-soft) 15%, #f6e6cf 90%);
       clip-path: url(#gm-blob-b); }
-    .objectives { margin: 10px 0 0; padding: 0 0 0 1.2em; }
-    .objectives li { margin-bottom: 10px; line-height: 1.6; }
-    .register-card { background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    /* the glow breathes — same register as the hero's dawn drift */
+    @media (prefers-reduced-motion: no-preference) {
+      .blob-glow { animation: glowDrift 16s ease-in-out infinite alternate; }
+    }
+    @keyframes glowDrift {
+      from { transform: translate(0, 0) rotate(0deg); }
+      to   { transform: translate(-12px, 9px) rotate(-3deg); }
+    }
+    .objectives { margin: 10px 0 0; padding: 0 0 0 2.3em; list-style: none; counter-reset: obj; }
+    .objectives li { margin-bottom: 12px; line-height: 1.6; counter-increment: obj; position: relative; }
+    .objectives li::before { content: counter(obj, decimal-leading-zero);
+      position: absolute; left: -2.3em; top: .12em; font-family: var(--serif);
+      font-weight: 600; font-size: .92em; letter-spacing: .04em; color: var(--sun); }
+    .register-card { background: linear-gradient(165deg, #ffffff 40%, var(--accent-soft));
+      border: 1px solid var(--line); border-radius: 16px;
       padding: 32px; margin-top: 34px; }
     #webinar-form.is-sent .field, #webinar-form.is-sent button, #webinar-form.is-sent .hp { display: none; }
     @media (max-width: 900px) {
@@ -62,14 +74,14 @@
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <clipPath id="gm-blob-a" clipPathUnits="objectBoundingBox">
-        <path d="M .500 .018 C .672 .004 .848 .076 .924 .232 C .996 .384 .988 .576 .924 .732
-                 C .858 .892 .700 .992 .520 .988 C .336 .984 .156 .916 .072 .756
-                 C -.008 .604 .004 .396 .088 .240 C .168 .092 .332 .032 .500 .018 Z" />
+        <path d="M .455 .030 C .640 -.008 .856 .058 .932 .214 C 1.004 .360 .984 .540 .914 .690
+                 C .842 .850 .694 .978 .500 .994 C .306 1.010 .112 .926 .044 .748
+                 C -.022 .576 .008 .364 .104 .212 C .190 .074 .295 .062 .455 .030 Z" />
       </clipPath>
       <clipPath id="gm-blob-b" clipPathUnits="objectBoundingBox">
-        <path d="M .460 .040 C .660 -.020 .880 .080 .950 .280 C 1.015 .470 .945 .670 .840 .810
-                 C .725 .960 .530 1.010 .345 .955 C .165 .900 .025 .750 .012 .555
-                 C .000 .360 .110 .150 .295 .080 C .350 .058 .405 .056 .460 .040 Z" />
+        <path d="M .420 .055 C .620 -.030 .875 .065 .955 .265 C 1.025 .445 .955 .640 .858 .790
+                 C .748 .958 .540 1.015 .350 .955 C .160 .895 .015 .740 .008 .540
+                 C .002 .345 .105 .155 .280 .090 C .330 .072 .370 .076 .420 .055 Z" />
       </clipPath>
     </defs>
   </svg>
