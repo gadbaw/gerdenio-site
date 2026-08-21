@@ -28,19 +28,21 @@
   <script defer src="assets/motion.js?v=3"></script>
   <script defer src="assets/analytics.js?v=1"></script>
   <style>
-    .event-layout { display: grid; grid-template-columns: 1fr 300px; gap: 56px; align-items: start; }
+    .event-layout { display: grid; grid-template-columns: 1fr 460px; gap: 72px; align-items: start; }
     .event-meta { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 18px 0 22px; }
     .event-meta span { font-size: 0.82rem; font-weight: 600; color: var(--accent-dk);
       background: var(--accent-soft); border-radius: 999px; padding: 6px 13px; }
-    .event-photo img { width: 100%; border-radius: 12px; display: block; }
+    /* the portrait carries the page: a wide column that rides along as you read */
+    .event-photo { position: sticky; top: 96px; margin: 0; }
+    .event-photo img { width: 100%; border-radius: 16px; display: block; }
     .objectives { margin: 10px 0 0; padding: 0 0 0 1.2em; }
     .objectives li { margin-bottom: 10px; line-height: 1.6; }
     .register-card { background: #fff; border: 1px solid var(--line); border-radius: 16px;
       padding: 32px; margin-top: 34px; }
     #webinar-form.is-sent .field, #webinar-form.is-sent button, #webinar-form.is-sent .hp { display: none; }
-    @media (max-width: 780px) {
-      .event-layout { grid-template-columns: 1fr; }
-      .event-photo { max-width: 300px; }
+    @media (max-width: 900px) {
+      .event-layout { grid-template-columns: 1fr; gap: 32px; }
+      .event-photo { order: -1; position: static; max-width: none; }
     }
   </style>
 </head>
