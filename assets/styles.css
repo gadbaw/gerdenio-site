@@ -312,7 +312,7 @@ section { padding: 84px 0; }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 12px 0; border-bottom: 1px solid var(--line); }
   .nav-toggle { display: block; }
-  .nav { padding-bottom: 34px; }   /* the wordmark gets more air on small screens */
+  .nav { padding-bottom: 42px; }   /* the wordmark gets more air on small screens */
   section { padding: 60px 0; }
   .hero { padding: 70px 0 56px; }
 }
