@@ -25,9 +25,24 @@
   <link rel="stylesheet" href="assets/styles.css?v=24" />
   <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)d.documentElement.classList.add("anim")}catch(e){}})(document);</script>
   <script>
-  /* event state: live until one hour after the session ends (1:45 PM PT + 1h = 21:45 UTC,
-     2026-08-26); after that the page shows its past-event state. ?past=1 previews it. */
-  (function(d){try{if(Date.now()>Date.parse("2026-08-26T21:45:00Z")||/[?&]past=1/.test(location.search))d.documentElement.classList.add("past-event")}catch(e){}})(document);
+  /* event state comes from the portal (staff toggle on /staff/webinars, or automatically one
+     hour after the session ends). Best guess first so there is no flash: the last answer
+     we cached, else the clock (1:45 PM PT + 1h = 21:45 UTC, 2026-08-26); then ask the
+     portal and reconcile. ?past=1 previews the past state. */
+  (function(d){
+    var KEY="levine-2026-08-25", LS="gm-event-past:"+KEY, root=d.documentElement;
+    function set(p){ root.classList.toggle("past-event", !!p); }
+    try{
+      if(/[?&]past=1/.test(location.search)){ set(true); return; }
+      var cached=null; try{ cached=localStorage.getItem(LS); }catch(e){}
+      set(cached!==null ? cached==="1" : Date.now()>Date.parse("2026-08-26T21:45:00Z"));
+      if(!window.fetch) return;
+      fetch("https://portal.gerdenio.com/webinar/"+KEY+"/state",{mode:"cors",credentials:"omit"})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(j){ if(j && typeof j.past==="boolean"){ set(j.past); try{ localStorage.setItem(LS, j.past?"1":"0"); }catch(e){} } })
+        .catch(function(){});
+    }catch(e){}
+  })(document);
   </script>
   <script defer src="assets/sprig.js?v=1"></script>
   <script defer src="assets/anim.js?v=3"></script>
