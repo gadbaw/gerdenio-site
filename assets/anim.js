@@ -8,6 +8,8 @@
   function init() {
     var revealSel = [
       '.hero .eyebrow', '.hero h1', '.hero .lede', '.hero-actions',
+      '.page-head .eyebrow', '.page-head h1', '.page-head .lede',
+      '.article-head .post-meta', '.article-head h1', '.article-head .byline', '.article-head .standfirst',
       'h2', '.card', '.person', '.figure',
       '.quote', 'blockquote', '.notice', '.tribute',
       '.contact-detail', '.field'

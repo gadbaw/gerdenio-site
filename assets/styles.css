@@ -157,6 +157,24 @@ section { padding: 84px 0; }
 .hero .lede { max-width: 52ch; margin-bottom: 2rem; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
+/* ---------- Page-header hierarchy ----------
+   Tier 1 .hero         arrival (Home only): dawn glow, sprig, display title
+   Tier 2 .page-head    section + event pages: paper, short rule, display title one step down
+   Tier 3 .article-head reading pages: kicker, h2-scale title in ink, hairline, text */
+.page-head { padding: 72px 0 40px; background: var(--paper); }
+.page-head .head-rule { display: block; width: 36px; height: 2px; background: var(--accent); border-radius: 1px; margin: 0 0 22px; }
+.center .head-rule, .page-head .center .head-rule { margin-left: auto; margin-right: auto; }
+.page-head .eyebrow { color: var(--accent); }
+.page-head h1 { font-size: clamp(2.05rem, 4.5vw, 3.1rem); max-width: 16ch; }
+.page-head .lede { max-width: 52ch; margin-bottom: 1.6rem; }
+.page-head .lede:last-child { margin-bottom: 0; }
+
+.article-head { padding: 64px 0 0; background: var(--paper); }
+.article-head .article { padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+.article-head h1 { font-size: clamp(1.95rem, 3.6vw, 2.65rem); font-weight: 340; line-height: 1.12; letter-spacing: -0.018em; max-width: 22ch; }
+.article-head h1 em { color: inherit; }          /* quiet: italic allowed, no blue accent at Tier 3 */
+.article-head .standfirst { margin-top: 0.9em; }
+
 /* ---------- Botanical accents (garden motif) ---------- */
 .sprig-accent {
   width: 208px; height: auto; display: block;
@@ -315,6 +333,8 @@ section { padding: 84px 0; }
   .nav { padding-bottom: 34px; }   /* the wordmark gets more air on small screens */
   section { padding: 60px 0; }
   .hero { padding: 70px 0 56px; }
+  .page-head { padding: 50px 0 30px; }
+  .article-head { padding: 44px 0 0; }
 }
 
 /* ---------- Motion (tasteful · reduced-motion aware) ---------- */
@@ -329,6 +349,8 @@ section { padding: 84px 0; }
 
   /* scroll-reveal (active only once JS adds .anim, so no-JS shows everything) */
   html.anim .hero .eyebrow, html.anim .hero h1, html.anim .hero .lede, html.anim .hero-actions,
+  html.anim .page-head .eyebrow, html.anim .page-head h1, html.anim .page-head .lede,
+  html.anim .article-head .post-meta, html.anim .article-head h1, html.anim .article-head .byline, html.anim .article-head .standfirst,
   html.anim h2, html.anim .card, html.anim .person, html.anim .figure,
   html.anim .quote, html.anim blockquote, html.anim .notice, html.anim .tribute,
   html.anim .contact-detail, html.anim .field {
