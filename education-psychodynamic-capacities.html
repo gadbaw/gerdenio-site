@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=23" />
+  <link rel="stylesheet" href="assets/styles.css?v=24" />
   <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)d.documentElement.classList.add("anim")}catch(e){}})(document);</script>
   <script defer src="assets/sprig.js?v=1"></script>
   <script defer src="assets/anim.js?v=3"></script>
@@ -54,7 +54,7 @@
       .event-layout { grid-template-columns: 1fr; gap: 32px; }
       .photo-col { order: -1; }
       /* leave headroom for the swell: peaks reach ~12% past the box each side */
-      .event-photo { position: relative; z-index: 2; max-width: min(290px, 78vw); margin: 0 auto; }
+      .event-photo { position: relative; top: auto; z-index: 2; max-width: min(290px, 78vw); margin: 0 auto 20px; }
     }
   </style>
 </head>
