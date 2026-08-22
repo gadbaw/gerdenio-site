@@ -37,7 +37,7 @@
        Sticky needs headroom to travel, so the grid item (.photo-col) stretches to
        the full row height and the figure pins inside it. */
     .photo-col { align-self: stretch; }
-    .event-photo { position: sticky; top: 110px; margin: 0; }
+    .event-photo { position: sticky; top: 110px; margin: 0; z-index: 2; }
     /* organic bezier mask (SVG clipPath defs at the top of <body>) + a soft
        dawn-tinted echo blob behind, offset up-and-right */
     .event-photo svg.portrait-blob { width: 100%; height: auto; display: block; overflow: visible; }
@@ -54,7 +54,7 @@
       .event-layout { grid-template-columns: 1fr; gap: 32px; }
       .photo-col { order: -1; }
       /* leave headroom for the swell: peaks reach ~12% past the box each side */
-      .event-photo { position: static; max-width: min(290px, 78vw); margin: 0 auto; }
+      .event-photo { position: relative; z-index: 2; max-width: min(290px, 78vw); margin: 0 auto; }
     }
   </style>
 </head>
