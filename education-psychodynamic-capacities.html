@@ -53,7 +53,8 @@
     @media (max-width: 900px) {
       .event-layout { grid-template-columns: 1fr; gap: 32px; }
       .photo-col { order: -1; }
-      .event-photo { position: static; max-width: 360px; margin: 0 auto; }
+      /* leave headroom for the swell: peaks reach ~12% past the box each side */
+      .event-photo { position: static; max-width: min(290px, 78vw); margin: 0 auto; }
     }
   </style>
 </head>
