@@ -24,11 +24,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css?v=24" />
   <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)d.documentElement.classList.add("anim")}catch(e){}})(document);</script>
+  <script>
+  /* event state: live until one hour after the session ends (1:45 PM PT + 1h = 21:45 UTC,
+     2026-08-26); after that the page shows its past-event state. ?past=1 previews it. */
+  (function(d){try{if(Date.now()>Date.parse("2026-08-26T21:45:00Z")||/[?&]past=1/.test(location.search))d.documentElement.classList.add("past-event")}catch(e){}})(document);
+  </script>
   <script defer src="assets/sprig.js?v=1"></script>
   <script defer src="assets/anim.js?v=3"></script>
   <script defer src="assets/motion.js?v=3"></script>
   <script defer src="assets/analytics.js?v=1"></script>
   <style>
+    /* live / past states (html.past-event, set by the clock gate in <head>) */
+    .when-past { display: none; }
+    html.past-event .when-live { display: none !important; }
+    html.past-event .when-past { display: block; }
+    html.past-event span.when-past, html.past-event a.when-past { display: inline-block; }
     .event-layout { display: grid; grid-template-columns: 1fr 400px; gap: 64px; align-items: start; }
     .event-meta { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 18px 0 22px; }
     .event-meta span { font-size: 0.82rem; font-weight: 600; color: var(--accent-dk);
@@ -89,7 +99,8 @@
       <h1 style="max-width:17em;">The Psychodynamic Capacities: <em>Making Depth Therapy Teachable</em></h1>
       <p class="lede" style="margin-bottom:6px;"><strong>Max Levine, Psy.D.</strong></p>
       <p class="lede" style="margin-top:0;">Wednesday, August 26, 2026 · 12:15–1:45 PM Pacific</p>
-      <p style="margin:18px 0 0;"><a class="btn btn-ghost" href="#register">Register ↓</a></p>
+      <p class="when-live" style="margin:18px 0 0;"><a class="btn btn-ghost" href="#register">Register ↓</a></p>
+      <p class="when-past lede" style="margin:14px 0 0;color:var(--accent-dk);">This session has taken place.</p>
     </div>
   </section>
 
@@ -98,10 +109,10 @@
     <div class="wrap event-layout">
       <div>
         <div class="event-meta">
-          <span>By invitation</span><span>Live on Zoom</span><span>90 minutes</span>
+          <span class="when-live">By invitation</span><span class="when-past">Past event</span><span>Live on Zoom</span><span>90 minutes</span>
         </div>
-        <p>Max Levine, Psy.D. presents the teaching model he has been developing for making relational psychodynamic therapy concrete and learnable: twelve psychodynamic capacities, the skills that cultivate them, and their translation into motivational-interviewing-compatible ambivalence formulations.</p>
-        <p>He'll also preview his current work on <em>relational stances</em>: crafting the therapy relationship itself to meet a patient's particular capacities. Ninety minutes, with time for discussion. Attendance is by invitation and free of charge.</p>
+        <p>Max Levine, Psy.D. <span class="when-live">presents</span><span class="when-past">presented</span> the teaching model he has been developing for making relational psychodynamic therapy concrete and learnable: twelve psychodynamic capacities, the skills that cultivate them, and their translation into motivational-interviewing-compatible ambivalence formulations.</p>
+        <p><span class="when-live">He'll also preview</span><span class="when-past">He also previewed</span> his current work on <em>relational stances</em>: crafting the therapy relationship itself to meet a patient's particular capacities. Ninety minutes, with time for discussion. Attendance <span class="when-live">is</span><span class="when-past">was</span> by invitation and free of charge.</p>
 
         <h2 style="margin-top:34px;">Learning objectives</h2>
         <p style="margin-bottom:4px;">After this session, participants will be able to:</p>
@@ -114,7 +125,7 @@
         </ol>
 
         <!-- REGISTRATION -->
-        <div class="register-card" id="register">
+        <div class="register-card when-live" id="register">
           <h2 style="margin-top:0;">Reserve your place</h2>
           <p style="margin-bottom:20px;">Enter the registration code from your invitation, and we'll email you a confirmation with the Zoom link and a calendar invite.</p>
           <form id="webinar-form" action="https://portal.gerdenio.com/webinar/levine-2026-08-25/register" method="POST">
@@ -134,6 +145,11 @@
             <button type="submit" class="btn" id="webinar-submit">Register</button>
             <p class="form-status" id="webinar-status" role="status" aria-live="polite"></p>
           </form>
+        </div>
+        <div class="register-card when-past" id="past">
+          <h2 style="margin-top:0;">This session has taken place</h2>
+          <p>The Psychodynamic Capacities was held on Wednesday, August 26, 2026. Thank you to everyone who joined the conversation.</p>
+          <p style="margin-bottom:0;">To hear about future grand rounds, <a href="newsletter.html">subscribe to Reflections</a> or see <a href="education.html">Education</a>.</p>
         </div>
 
         <!-- SPEAKER -->

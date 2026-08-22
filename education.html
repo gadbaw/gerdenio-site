@@ -24,11 +24,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css?v=24" />
   <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)d.documentElement.classList.add("anim")}catch(e){}})(document);</script>
+  <script>
+  /* event state: live until one hour after the session ends (1:45 PM PT + 1h = 21:45 UTC,
+     2026-08-26); after that the page shows its past-event state. ?past=1 previews it. */
+  (function(d){try{if(Date.now()>Date.parse("2026-08-26T21:45:00Z")||/[?&]past=1/.test(location.search))d.documentElement.classList.add("past-event")}catch(e){}})(document);
+  </script>
   <script defer src="assets/sprig.js?v=1"></script>
   <script defer src="assets/anim.js?v=3"></script>
   <script defer src="assets/motion.js?v=3"></script>
   <script defer src="assets/analytics.js?v=1"></script>
   <style>
+    /* archive of past grand rounds: date column + entry, hairline rows */
+    .past-events { margin-top: 56px; }
+    .past-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .past-list li { display: grid; grid-template-columns: 170px 1fr; gap: 28px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .past-list .pe-date { font-family: var(--serif); font-size: 1.05rem; color: var(--ink-soft); margin: 4px 0 0; }
+    .past-list h3 { font-size: 1.45rem; margin: 0 0 6px; line-height: 1.25; }
+    .past-list h3 a { color: inherit; }
+    .past-list h3 a:hover { color: var(--accent-dk); }
+    .past-list .pe-who { font-weight: 600; color: var(--ink-soft); margin: 0 0 8px; font-size: 0.98rem; }
+    .past-list .pe-blurb { margin: 0; max-width: 62ch; }
+    @media (max-width: 640px) { .past-list li { grid-template-columns: 1fr; gap: 6px; } .past-list .pe-date { margin: 0; font-size: .95rem; } }
+    /* live / past states (html.past-event, set by the clock gate in <head>) */
+    .when-past { display: none; }
+    html.past-event .when-live { display: none !important; }
+    html.past-event .when-past { display: block; }
+    html.past-event span.when-past, html.past-event a.when-past { display: inline-block; }
     .event-card { display: grid; grid-template-columns: 1fr 360px; gap: 48px; align-items: center;
       background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 44px; }
     .event-meta { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 18px 0 22px; }
@@ -79,19 +100,20 @@
   <section style="padding-top:24px;">
     <div class="wrap">
       <p class="eyebrow">Upcoming Grand Rounds</p>
-      <div class="event-card">
+      <p class="when-past" style="margin:-6px 0 0;">No sessions are scheduled at the moment. <a href="newsletter.html">Subscribe to Reflections</a> to hear about the next one.</p>
+      <div class="event-card when-live">
         <div>
           <p class="event-when">Wednesday, August 26, 2026 · 12:15–1:45 PM Pacific</p>
           <h2 style="margin:6px 0 4px;"><a href="education-psychodynamic-capacities.html" style="color:inherit;text-decoration:none;">The Psychodynamic Capacities: <em>Making Depth Therapy Teachable</em></a></h2>
           <p style="font-weight:600;color:var(--ink-soft);margin:0;">Max Levine, Psy.D.</p>
           <div class="event-meta">
-            <span>By invitation</span><span>Live on Zoom</span><span>90 minutes</span>
+            <span class="when-live">By invitation</span><span class="when-past">Past event</span><span>Live on Zoom</span><span>90 minutes</span>
           </div>
-          <p>Max Levine, Psy.D. presents the teaching model he has been developing for making relational psychodynamic therapy concrete and learnable: twelve psychodynamic capacities, the skills that cultivate them, and their translation into motivational-interviewing-compatible ambivalence formulations.</p>
-          <p>He'll also preview his current work on <em>relational stances</em>: crafting the therapy relationship itself to meet a patient's particular capacities. Ninety minutes, with time for discussion. Attendance is by invitation and free of charge.</p>
+          <p>Max Levine, Psy.D. <span class="when-live">presents</span><span class="when-past">presented</span> the teaching model he has been developing for making relational psychodynamic therapy concrete and learnable: twelve psychodynamic capacities, the skills that cultivate them, and their translation into motivational-interviewing-compatible ambivalence formulations.</p>
+          <p><span class="when-live">He'll also preview</span><span class="when-past">He also previewed</span> his current work on <em>relational stances</em>: crafting the therapy relationship itself to meet a patient's particular capacities. Ninety minutes, with time for discussion. Attendance <span class="when-live">is</span><span class="when-past">was</span> by invitation and free of charge.</p>
 
           <div class="register-panel" id="register">
-            <a class="btn" href="education-psychodynamic-capacities.html">Event details &amp; registration →</a>
+            <a class="btn when-live" href="education-psychodynamic-capacities.html">Event details &amp; registration →</a>
           </div>
         </div>
         <figure class="event-photo">
@@ -145,6 +167,21 @@
                    clip-path="url(#gm-pA)"/>
           </svg></a>
         </figure>
+      </div>
+
+      <!-- PAST EVENTS (archive; add a row per event, newest first) -->
+      <div class="past-events when-past">
+        <p class="eyebrow">Past Grand Rounds</p>
+        <ol class="past-list">
+          <li>
+            <p class="pe-date">August 26, 2026</p>
+            <div>
+              <h3><a href="education-psychodynamic-capacities.html">The Psychodynamic Capacities: <em>Making Depth Therapy Teachable</em></a></h3>
+              <p class="pe-who">Max Levine, Psy.D.</p>
+              <p class="pe-blurb">Twelve psychodynamic capacities, the skills that cultivate them, and their translation into motivational-interviewing-compatible ambivalence formulations, with a preview of relational stances.</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
