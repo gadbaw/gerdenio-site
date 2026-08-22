@@ -37,7 +37,9 @@
        Sticky needs headroom to travel, so the grid item (.photo-col) stretches to
        the full row height and the figure pins inside it. */
     .photo-col { align-self: stretch; }
-    .event-photo { position: sticky; top: 110px; margin: 0; z-index: 2; }
+    /* sits near vertical center of the viewport as you scroll; the floor keeps the
+       blob's upward swell (~12% past the box) clear of the 110px header */
+    .event-photo { position: sticky; top: max(170px, calc(50vh - 225px)); margin: 0; z-index: 2; }
     /* organic bezier mask (SVG clipPath defs at the top of <body>) + a soft
        dawn-tinted echo blob behind, offset up-and-right */
     .event-photo svg.portrait-blob { width: 100%; height: auto; display: block; overflow: visible; }
@@ -112,7 +114,7 @@
 
         <!-- SPEAKER -->
         <h2 style="margin-top:38px;">About Max Levine</h2>
-        <p>Max Levine, Psy.D. is a clinical psychologist and a postdoctoral fellow at North Star Psychological Services in Washington, DC, where his practice centers on depression, adult ADHD, men&rsquo;s mental health, and care in the months after a hospitalization. He completed his Psy.D. at the Wright Institute in Berkeley, with a dissertation on an integrated evolutionary and clinical theory of depression, and trained as a practicum student at Equity Health in San Francisco.</p>
+        <p>Max Levine, Psy.D. is a clinical psychologist and a postdoctoral fellow at North Star Psychological Services in Washington, DC, where his practice centers on depression, adult ADHD, men&rsquo;s mental health, and care in the months after a hospitalization. He completed his Psy.D. at the Wright Institute in Berkeley, where his research focused on depression, and trained as a practicum student at Equity Health in San Francisco.</p>
         <p>He came to psychology from art. He began drawing and painting lessons at eight, studied studio art at Wesleyan, and left a sixteen-foot sculpture of reclaimed barn wood, <em>Trees Are Beautiful</em>, in the university&rsquo;s permanent collection. He taught art before beginning his doctorate and still works in wood, clay, and paint; he describes the studio and the consulting room as continually informing each other.</p>
         <p>On internship at the Long School of Medicine at UT Health San Antonio he co-directed the psychodynamic psychotherapy course for psychiatry residents, and the twelve capacities grew out of that teaching. He directs the psychodynamic program at Reflective Training, a UT Health&ndash;affiliated clinician-training platform, and is co-writing a book on integrative psychotherapy with David Roberts. He is also a poet; his &ldquo;<a href="reflections-levine-the-man-in-blue-jeans.html">The Man in Blue Jeans</a>&rdquo; is on our Reflections page with his own reading. More of his work is at <a href="https://www.maxlevine.net/" rel="noopener">maxlevine.net</a>.</p>
 
