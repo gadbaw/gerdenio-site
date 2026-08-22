@@ -113,7 +113,12 @@
                 </path>
               </clipPath>
               <linearGradient id="gm-glow-fill" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="15%" stop-color="#e6eef9"/><stop offset="90%" stop-color="#f6e6cf"/>
+                <!-- the light axis tilts slowly across the form (in step with the shape morph) -->
+                <animate class="gm-morph" attributeName="x1" begin="indefinite" dur="23s" repeatCount="indefinite"
+                   calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1" values="0;.35;0"/>
+                <animate class="gm-morph" attributeName="y2" begin="indefinite" dur="23s" repeatCount="indefinite"
+                   calcMode="spline" keySplines=".4 0 .6 1;.4 0 .6 1" values="1;.6;1"/>
+                <stop offset="15%" stop-color="#bfd3f0"/><stop offset="90%" stop-color="#f2cf9e"/>
               </linearGradient>
             </defs>
             <g>
