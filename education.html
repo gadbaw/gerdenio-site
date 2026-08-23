@@ -72,7 +72,11 @@
       background: var(--accent-soft); border-radius: 999px; padding: 6px 13px; }
     .event-when { font-size: 1.02rem; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
     .event-photo { position: relative; z-index: 2; margin: 0; }
-    .event-photo svg.portrait-blob { width: 100%; height: auto; display: block; overflow: visible; }
+    /* the viewBox is padded (-60 -120 1050 1190) so the morph never leaves it: iOS Safari
+       clips inline SVG to its box whatever overflow says. The padding is pulled back out
+       with % margins so the 880x990 portrait region keeps the column's width/height. */
+    .event-photo svg.portrait-blob { width: 119.318%; height: auto; display: block;
+      margin: -13.636% -12.5% -9.091% -6.818%; max-width: none; }
     .register-panel { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 28px; }
     @media (max-width: 780px) {
       .event-card { grid-template-columns: 1fr; padding: 28px; }
@@ -132,7 +136,7 @@
           </div>
         </div>
         <figure class="event-photo">
-          <a href="education-psychodynamic-capacities.html"><svg class="portrait-blob" viewBox="0 0 880 990" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Max Levine, Psy.D.">
+          <a href="education-psychodynamic-capacities.html"><svg class="portrait-blob" viewBox="-60 -120 1050 1190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Max Levine, Psy.D.">
             <defs>
               <clipPath id="gm-pA">
                 <path d="M 440.0 18.5 C 540.2 28.1 639.3 98.2 715.5 177.6 C 791.7 257.1 889.3 380.3 897.1 495.0 C 904.8 609.7 838.3 788.7 762.2 866.1 C 686.0 943.5 541.9 966.0 440.0 959.6 C 338.1 953.2 224.3 905.4 150.9 828.0 C 77.5 750.6 5.8 613.0 -0.2 495.0 C -6.3 377.0 41.2 199.6 114.6 120.2 C 188.0 40.7 339.8 8.9 440.0 18.5 Z">
