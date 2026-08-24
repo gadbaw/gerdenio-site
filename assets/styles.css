@@ -281,12 +281,18 @@ section { padding: 84px 0; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
 .field { margin-bottom: 18px; }
 .field label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
-.field input, .field textarea {
+.field input, .field textarea, .field select {
   width: 100%; padding: 12px 14px; font-family: var(--sans); font-size: 1rem;
   border: 1px solid var(--line); border-radius: 2px; background: #fff; color: var(--ink);
 }
+.field select {
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5a74' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; background-size: 14px;
+  padding-right: 40px;
+}
 .field textarea { min-height: 140px; resize: vertical; }
-.field input:focus, .field textarea:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+.field input:focus, .field textarea:focus, .field select:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
 .contact-detail { margin-bottom: 26px; }
 .contact-detail h4 { margin-bottom: 4px; }
 .contact-detail p { margin: 0; font-size: 0.98rem; }

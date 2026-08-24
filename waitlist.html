@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact · Gerdenio Manuel Center for Psychotherapy</title>
-  <meta name="description" content="Reach out to the Gerdenio Manuel Center for Psychotherapy to begin a conversation." />
+  <title>Waitlist · Gerdenio Manuel Center for Psychotherapy</title>
+  <meta name="description" content="Join the waitlist at the Gerdenio Manuel Center for Psychotherapy. We'll reach out personally when an opening becomes available." />
   <!-- Open Graph / social sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Gerdenio Manuel Center for Psychotherapy" />
-  <meta property="og:title" content="Contact · Gerdenio Manuel Center for Psychotherapy" />
-  <meta property="og:description" content="Reach out to the Gerdenio Manuel Center for Psychotherapy to begin a conversation." />
-  <meta property="og:url" content="https://gerdenio.com/contact.html" />
+  <meta property="og:title" content="Waitlist · Gerdenio Manuel Center for Psychotherapy" />
+  <meta property="og:description" content="Join the waitlist at the Gerdenio Manuel Center for Psychotherapy. We'll reach out personally when an opening becomes available." />
+  <meta property="og:url" content="https://gerdenio.com/waitlist.html" />
   <meta property="og:image" content="https://gerdenio.com/assets/img/og-image.png?v=2" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Gerdenio Manuel Center for Psychotherapy — Pathways to hope and healing." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contact · Gerdenio Manuel Center for Psychotherapy" />
-  <meta name="twitter:description" content="Reach out to the Gerdenio Manuel Center for Psychotherapy to begin a conversation." />
+  <meta name="twitter:title" content="Waitlist · Gerdenio Manuel Center for Psychotherapy" />
+  <meta name="twitter:description" content="Join the waitlist at the Gerdenio Manuel Center for Psychotherapy. We'll reach out personally when an opening becomes available." />
   <meta name="twitter:image" content="https://gerdenio.com/assets/img/og-image.png?v=2" />
-  <link rel="canonical" href="https://gerdenio.com/contact.html" />
+  <link rel="canonical" href="https://gerdenio.com/waitlist.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=25" />
+  <link rel="stylesheet" href="assets/styles.css?v=26" />
   <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)d.documentElement.classList.add("anim")}catch(e){}})(document);</script>
   <script defer src="assets/sprig.js?v=1"></script>
   <script defer src="assets/anim.js?v=4"></script>
@@ -46,7 +46,7 @@
         <a href="clinicians.html">Clinicians</a>
         <a href="education.html">Education</a>
         <a href="reflections.html">Reflections</a>
-        <a href="contact.html" class="btn" style="padding:9px 18px;" aria-current="page">Inquire</a>
+        <a href="contact.html" class="btn" style="padding:9px 18px;">Inquire</a>
       </div>
     </nav>
   </header>
@@ -55,25 +55,28 @@
   <section class="page-head">
     <div class="wrap read">
       <span class="head-rule" aria-hidden="true"></span>
-      <p class="eyebrow">Contact</p>
-      <h1>Begin <em>a conversation.</em></h1>
-      <p class="lede">We welcome your questions about psychotherapy, our practice, and whether our work might be a good fit. Reaching out is a first step, not a commitment — we'll respond personally.</p>
+      <p class="eyebrow">Waitlist</p>
+      <h1>Hold <em>a place.</em></h1>
+      <p class="lede">When our schedules are full, the waitlist is how we hold your place. Leave your name below and one of our clinicians will contact you personally when an opening becomes available — there's nothing more you need to do in the meantime.</p>
     </div>
   </section>
 
-  <!-- CONTACT GRID -->
+  <!-- WAITLIST GRID -->
   <section style="padding-top:24px;">
     <div class="wrap contact-grid">
 
       <!-- FORM -->
       <div>
-        <h2>Send an inquiry</h2>
-        <p>Tell us a little about what brings you here, and we'll respond personally. You're also welcome to write to us directly at <a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a>.</p>
-        <!-- Formspree endpoint -->
-        <form id="inquiry-form" action="https://formspree.io/f/mgobajdn" method="POST">
+        <h2>Join the waitlist</h2>
+        <p>A few details are all we need. If you'd rather write to us, you're welcome to email <a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a>.</p>
+        <form id="waitlist-form" action="https://portal.gerdenio.com/waitlist/join" method="POST">
           <div class="field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" autocomplete="name" required />
+            <label for="first_name">First name</label>
+            <input type="text" id="first_name" name="first_name" autocomplete="given-name" required />
+          </div>
+          <div class="field">
+            <label for="last_name">Last name</label>
+            <input type="text" id="last_name" name="last_name" autocomplete="family-name" required />
           </div>
           <div class="field">
             <label for="email">Email</label>
@@ -84,44 +87,47 @@
             <input type="tel" id="phone" name="phone" autocomplete="tel" />
           </div>
           <div class="field">
-            <label for="message">How can we help?</label>
-            <textarea id="message" name="message" rows="5" placeholder="A few sentences about what you're looking for and any questions you have."></textarea>
+            <label for="clinician">Is there a clinician you'd like to work with?</label>
+            <select id="clinician" name="clinician">
+              <option value="" selected>No preference</option>
+              <option value="sonny">Gerdenio "Sonny" Manuel, S.J., Ph.D.</option>
+              <option value="ben">Benjamin J. Gadbaw, M.A.</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Anything you'd like us to know? (optional)</label>
+            <textarea id="message" name="message" rows="4" placeholder="A few sentences about what you're looking for — scheduling constraints, individual or couples work, any questions."></textarea>
             <p class="field-hint">For your privacy, please don't include sensitive clinical or health details here — we'll discuss those securely once we're in touch.</p>
           </div>
           <!-- spam honeypot: visible to bots, hidden from people -->
-          <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
-          <input type="hidden" name="_subject" value="New inquiry — gerdenio.com" />
-          <button type="submit" class="btn" id="inquiry-submit">Send inquiry</button>
+          <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+          <button type="submit" class="btn" id="waitlist-submit">Join the waitlist</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
 
       <!-- DETAILS -->
       <div>
-        <h2>Reach us</h2>
+        <h2>What to expect</h2>
         <div class="contact-detail">
-          <h4>Email</h4>
-          <p><a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a></p>
+          <h4>A confirmation, right away</h4>
+          <p>You'll receive an email confirming your place on the list.</p>
         </div>
         <div class="contact-detail">
-          <h4>Phone</h4>
-          <p><a href="tel:+14155693735">(415) 569-3735</a></p>
+          <h4>A personal call when a place opens</h4>
+          <p>One of our clinicians — not an automated message — will reach out to talk about fit and next steps.</p>
         </div>
         <div class="contact-detail">
-          <h4>Location</h4>
-          <p>Loyola Jesuit Community<br>2600 Turk Blvd<br>San Francisco, CA 94118<br>By appointment · In-person and telehealth</p>
+          <h4>Your privacy</h4>
+          <p>What you share here goes directly to our own secure practice system. No third party receives it.</p>
         </div>
         <div class="contact-detail">
-          <h4>Hours</h4>
-          <p>By appointment, Monday–Friday</p>
-        </div>
-        <div class="contact-detail">
-          <h4>Waitlist</h4>
-          <p>If our schedules are full when you write, you can <a href="waitlist.html">join the waitlist</a> — we'll reach out personally when an opening becomes available.</p>
+          <h4>Questions in the meantime</h4>
+          <p><a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a><br><a href="tel:+14155693735">(415) 569-3735</a></p>
         </div>
 
         <div class="notice" style="margin-top:32px;">
-          <strong>If you are in crisis,</strong> this form is not monitored for emergencies. Call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), or call <strong>911</strong>, or go to your nearest emergency room.
+          <strong>If you are in crisis,</strong> please don't wait for an opening. Call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), or call <strong>911</strong>, or go to your nearest emergency room.
         </div>
       </div>
 
@@ -168,14 +174,15 @@
     </div>
   </footer>
 
-  <!-- Contact form: AJAX submit to Formspree with graceful fallback -->
+  <!-- Waitlist form: AJAX submit to the practice's own portal with graceful fallback.
+       With JavaScript off, the plain POST lands on portal.gerdenio.com, which renders
+       a branded confirmation page. -->
   <script>
   (function () {
-    var form = document.getElementById('inquiry-form');
+    var form = document.getElementById('waitlist-form');
     if (!form) return;
     var statusEl = document.getElementById('form-status');
-    var btn = document.getElementById('inquiry-submit');
-    var notConnected = form.action.indexOf('YOUR_FORM_ID') !== -1;
+    var btn = document.getElementById('waitlist-submit');
 
     function setStatus(msg, kind) {
       statusEl.textContent = msg;
@@ -184,13 +191,9 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (notConnected) {
-        setStatus('This form isn’t connected yet — please email hello@gerdenio.com in the meantime.', 'error');
-        return;
-      }
       btn.disabled = true;
       var label = btn.textContent;
-      btn.textContent = 'Sending…';
+      btn.textContent = 'Joining…';
       setStatus('', '');
 
       fetch(form.action, {
@@ -198,17 +201,17 @@
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       }).then(function (res) {
-        if (res.ok) {
+        return res.json().then(function (d) { return { ok: res.ok, data: d }; });
+      }).then(function (r) {
+        if (r.ok && r.data && r.data.ok) {
           form.reset();
           form.classList.add('is-sent');
-          setStatus('Thank you — your message has been sent. We’ll respond personally, usually within a couple of business days.', 'success');
+          setStatus(r.data.message || 'You’re on the waitlist. We’ve sent a confirmation to your email.', 'success');
         } else {
-          return res.json().then(function (d) {
-            throw new Error((d && d.errors && d.errors[0] && d.errors[0].message) || 'error');
-          });
+          setStatus((r.data && r.data.error) || 'Sorry — we couldn’t add you just now. Please email hello@gerdenio.com and we’ll add you ourselves.', 'error');
         }
       }).catch(function () {
-        setStatus('Sorry — we couldn’t send that just now. Please email hello@gerdenio.com directly and we’ll get right back to you.', 'error');
+        setStatus('Sorry — we couldn’t add you just now. Please email hello@gerdenio.com and we’ll add you ourselves.', 'error');
       }).finally(function () {
         btn.disabled = false;
         btn.textContent = label;

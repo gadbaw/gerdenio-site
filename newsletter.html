@@ -130,6 +130,7 @@
             <li><a href="reflections.html">Reflections</a></li>
             <li><a href="about.html#voices">Voices</a></li>
             <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="waitlist.html">Waitlist</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -149,6 +150,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- First-party record of newsletter signups: when the MailerLite form submits,
+       also tell the practice's own portal, so the signup list doesn't live only
+       inside a vendor. Fire-and-forget — MailerLite remains the list of record and
+       a failure here never touches the visitor's signup. -->
+  <script>
+  (function () {
+    var form = document.querySelector('.ml-block-form');
+    if (!form) return;
+    form.addEventListener('submit', function () {
+      try {
+        var input = form.querySelector('input[name="fields[email]"]');
+        var email = input && input.value ? input.value.trim() : '';
+        if (!email) return;
+        var fd = new FormData();
+        fd.append('email', email);
+        fd.append('source', location.pathname);
+        fetch('https://portal.gerdenio.com/newsletter/signup', {
+          method: 'POST', body: fd, keepalive: true, mode: 'cors',
+          headers: { 'Accept': 'application/json' }
+        }).catch(function () {});
+      } catch (e) {}
+    }, true);
+  })();
+  </script>
 
   <!-- MailerLite embedded-form runtime -->
   <script>
