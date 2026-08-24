@@ -69,8 +69,7 @@
       <div>
         <h2>Send an inquiry</h2>
         <p>Tell us a little about what brings you here, and we'll respond personally. You're also welcome to write to us directly at <a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a>.</p>
-        <!-- Formspree endpoint -->
-        <form id="inquiry-form" action="https://formspree.io/f/mgobajdn" method="POST">
+        <form id="inquiry-form" action="https://portal.gerdenio.com/contact/inquiry" method="POST">
           <div class="field">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" autocomplete="name" required />
@@ -89,8 +88,7 @@
             <p class="field-hint">For your privacy, please don't include sensitive clinical or health details here — we'll discuss those securely once we're in touch.</p>
           </div>
           <!-- spam honeypot: visible to bots, hidden from people -->
-          <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
-          <input type="hidden" name="_subject" value="New inquiry — gerdenio.com" />
+          <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
           <button type="submit" class="btn" id="inquiry-submit">Send inquiry</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
@@ -167,14 +165,15 @@
     </div>
   </footer>
 
-  <!-- Contact form: AJAX submit to Formspree with graceful fallback -->
+  <!-- Contact form: AJAX submit to the practice's own portal with graceful fallback.
+       With JavaScript off, the plain POST lands on portal.gerdenio.com, which renders
+       a branded confirmation page. -->
   <script>
   (function () {
     var form = document.getElementById('inquiry-form');
     if (!form) return;
     var statusEl = document.getElementById('form-status');
     var btn = document.getElementById('inquiry-submit');
-    var notConnected = form.action.indexOf('YOUR_FORM_ID') !== -1;
 
     function setStatus(msg, kind) {
       statusEl.textContent = msg;
@@ -183,10 +182,6 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (notConnected) {
-        setStatus('This form isn’t connected yet — please email hello@gerdenio.com in the meantime.', 'error');
-        return;
-      }
       btn.disabled = true;
       var label = btn.textContent;
       btn.textContent = 'Sending…';
@@ -197,14 +192,14 @@
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       }).then(function (res) {
-        if (res.ok) {
+        return res.json().then(function (d) { return { ok: res.ok, data: d }; });
+      }).then(function (r) {
+        if (r.ok && r.data && r.data.ok) {
           form.reset();
           form.classList.add('is-sent');
-          setStatus('Thank you — your message has been sent. We’ll respond personally, usually within a couple of business days.', 'success');
+          setStatus(r.data.message || 'Thank you — your message has been sent. We’ll respond personally, usually within a couple of business days.', 'success');
         } else {
-          return res.json().then(function (d) {
-            throw new Error((d && d.errors && d.errors[0] && d.errors[0].message) || 'error');
-          });
+          setStatus((r.data && r.data.error) || 'Sorry — we couldn’t send that just now. Please email hello@gerdenio.com directly and we’ll get right back to you.', 'error');
         }
       }).catch(function () {
         setStatus('Sorry — we couldn’t send that just now. Please email hello@gerdenio.com directly and we’ll get right back to you.', 'error');
