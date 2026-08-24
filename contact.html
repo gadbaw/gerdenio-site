@@ -89,6 +89,10 @@
           </div>
           <!-- spam honeypot: visible to bots, hidden from people -->
           <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+          <!-- how long the form was on screen before submitting. Scripts off means
+               it stays empty, which counts against nobody — only an impossibly fast
+               submission is treated as a bot signal. -->
+          <input type="hidden" name="fill_ms" value="" />
           <button type="submit" class="btn" id="inquiry-submit">Send inquiry</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
@@ -180,8 +184,12 @@
       statusEl.className = 'form-status' + (kind ? ' is-' + kind : '');
     }
 
+    var loadedAt = Date.now();
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var ms = form.querySelector('input[name="fill_ms"]');
+      if (ms) ms.value = String(Date.now() - loadedAt);
       btn.disabled = true;
       var label = btn.textContent;
       btn.textContent = 'Sending…';
