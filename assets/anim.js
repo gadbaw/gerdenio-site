@@ -11,11 +11,15 @@
       '.page-head .eyebrow', '.page-head h1', '.page-head .lede',
       '.article-head .post-meta', '.article-head h1', '.article-head .byline', '.article-head .standfirst',
       'h2', '.card', '.person', '.figure',
-      '.quote', 'blockquote', '.notice', '.tribute',
+      '.quote', 'blockquote', '.voice', '.notice', '.tribute',
       '.contact-detail', '.field'
     ].join(',');
 
-    var reveals = [].slice.call(document.querySelectorAll(revealSel));
+    var reveals = [].slice.call(document.querySelectorAll(revealSel))
+      /* testimonial cards animate as a whole; their blockquote rides along */
+      .filter(function (el) {
+        return !(el.tagName === 'BLOCKQUOTE' && el.closest && el.closest('.voice'));
+      });
     /* sprigs are handled by sprig.js (inline-SVG sprout), not the generic reveal */
 
     /* gentle stagger between siblings sharing a parent */

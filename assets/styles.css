@@ -384,10 +384,16 @@ section { padding: 84px 0; }
   html.anim .article-head .post-meta, html.anim .article-head h1, html.anim .article-head .byline, html.anim .article-head .standfirst,
   html.anim h2, html.anim .card, html.anim .person, html.anim .figure,
   html.anim .quote, html.anim blockquote, html.anim .notice, html.anim .tribute,
-  html.anim .contact-detail, html.anim .field {
+  html.anim .voice, html.anim .contact-detail, html.anim .field {
     opacity: 0; transform: translateY(18px);
     transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
   }
+  html.anim .voice blockquote { opacity: 1; transform: none; transition: none; }
+  /* the marks close around the words a beat after the card settles */
+  html.anim .voice blockquote::before,
+  html.anim .voice blockquote::after { opacity: 0; transition: opacity .6s ease .32s; }
+  html.anim .voice.is-in blockquote::before,
+  html.anim .voice.is-in blockquote::after { opacity: 1; }
   html.anim .is-in { opacity: 1 !important; transform: none !important; }
 
   /* SPROUT — the stem draws itself; the leaves grow from the stem and settle.
