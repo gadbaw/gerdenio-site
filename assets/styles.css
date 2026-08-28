@@ -551,13 +551,6 @@ section { padding: 84px 0; }
 .voice blockquote::after { font-size: 1.3em; line-height: 0; color: var(--sun); }
 .voice blockquote::before { content: "\201C"; }
 .voice blockquote::after  { content: "\201D"; }
-/* the featured quote carries the large gold marks instead — set as a pair,
-   opening above the text and closing below it, so the quote is bookended */
-.voice--featured blockquote { text-indent: 0; }
-.voice--featured blockquote::before,
-.voice--featured blockquote::after { content: none; }
-.voice-mark { display: block; height: 1.1rem; font-family: var(--serif); font-size: 3.4rem; line-height: 0; color: var(--sun); }
-.voice-mark--close { height: 0; margin-top: 2.4rem; text-align: right; }
 .voice figcaption { margin-top: 1.3rem; }
 .voice .who { display: block; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--accent-dk); }
 .voice .role { display: block; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 3px; }
