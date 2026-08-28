@@ -283,8 +283,10 @@ section { padding: 84px 0; }
   max-width: 760px;
   margin: 0 auto;
 }
+.quote p { margin: 0; }
+.quote p::before { content: "\201C"; color: var(--sun); }
+.quote p::after  { content: "\201D"; color: var(--sun); }
 .quote cite { display: block; font-family: var(--sans); font-style: normal; font-size: 0.9rem; color: var(--muted); margin-top: 1.2rem; letter-spacing: 0.02em; }
-.quote-mark { font-family: var(--serif); font-size: 3.4rem; color: var(--sun); line-height: 0.2; display:block; margin-bottom: 1rem; }
 
 /* ---------- Naming note ---------- */
 .tribute {
@@ -534,33 +536,62 @@ section { padding: 84px 0; }
   @keyframes veil-in { from { opacity: 0; visibility: visible; } to { opacity: 1; visibility: visible; } }
 }
 
-/* ---------- Voices / testimonials ---------- */
-.voices { max-width: var(--readw); margin: 0 auto; }
-.voice { margin: 0; padding: 44px 0; border-top: 1px solid var(--line); }
-.voice:first-child { border-top: 0; padding-top: 0; }
-.voice blockquote {
-  margin: 0; font-family: var(--serif); font-weight: 300;
-  font-size: 1.4rem; line-height: 1.55; color: var(--ink); letter-spacing: -0.005em;
+/* ---------- Voices (testimonial ledger) ----------
+   Attributions sit in a right-aligned rail, the words in the reading column,
+   so every voice shares one structure whether or not it carries a name — the
+   same grammar as the Record ledger above it. One type size throughout: the
+   lead voice leads by position, not by scale. */
+.voices, .voices-head { max-width: 900px; margin: 0 auto; }
+.voices-head { margin-bottom: 52px; }
+.voices-head .lede { max-width: 62ch; }
+.voices-group + .voices-group { margin-top: 72px; }
+.voices-label {
+  display: flex; align-items: center; gap: 20px;
+  font-family: var(--sans); font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-dk);
+  margin: 0 0 10px;
 }
-.voice--featured blockquote { font-size: 1.68rem; line-height: 1.5; }
+.voices-label::after { content: ""; flex: 1 1 auto; height: 1px; background: var(--line); }
+.voices-note {
+  font-family: var(--sans); font-size: 0.94rem; line-height: 1.6;
+  color: var(--ink-soft); max-width: 60ch; margin: 0;
+}
+.voice {
+  display: grid; grid-template-columns: 190px 1fr; gap: 46px;
+  margin: 0; padding: 40px 0; border-top: 1px solid var(--line);
+}
+.voices-group .voice:first-of-type { margin-top: 26px; }
+.voices-group .voice:last-of-type { border-bottom: 1px solid var(--line); }
+.voice blockquote {
+  grid-column: 2; grid-row: 1; margin: 0; max-width: 60ch;
+  font-family: var(--serif); font-weight: 300;
+  font-size: 1.28rem; line-height: 1.62; letter-spacing: -0.005em; color: var(--ink);
+  text-wrap: pretty;
+}
 /* Real quotation marks around every quote, set at text size in the warm
    accent — the face's own metrics give them their spacing. */
 .voice blockquote::before { content: "\201C"; color: var(--sun); }
 .voice blockquote::after  { content: "\201D"; color: var(--sun); }
-.voice figcaption { margin-top: 1.3rem; }
-.voice .who { display: block; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--accent-dk); }
-.voice .role { display: block; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 3px; }
-
-/* named clinicians — quote paired with a portrait */
-.voices--people { max-width: 860px; }
-.voice--person { display: grid; grid-template-columns: 152px 1fr; gap: 38px; align-items: start; }
-.voice--person .voice-id { display: flex; flex-direction: column; }
-.voice-photo { width: 152px; height: 190px; object-fit: cover; border-radius: 4px; display: block; }
-.voice--person .who { margin-top: 14px; }
-.voice--person blockquote { font-size: 1.2rem; line-height: 1.62; }
-@media (max-width: 600px) {
-  .voice--person { grid-template-columns: 1fr; gap: 16px; }
-  .voice-photo { width: 120px; height: 150px; }
+.voice figcaption { grid-column: 1; grid-row: 1; text-align: right; padding-top: 8px; }
+.voice .who {
+  display: block; font-family: var(--sans); font-weight: 600; font-size: 0.9rem;
+  line-height: 1.4; letter-spacing: 0.01em; color: var(--accent-dk);
+}
+.voice .role {
+  display: block; font-family: var(--sans); font-size: 0.82rem;
+  line-height: 1.5; color: var(--muted); margin-top: 5px;
+}
+.voice-photo {
+  width: 124px; height: 155px; object-fit: cover; border-radius: 3px;
+  display: block; margin: 0 0 14px auto;
+}
+@media (max-width: 760px) {
+  .voice { grid-template-columns: 1fr; gap: 20px; padding: 32px 0; }
+  .voice blockquote { grid-column: 1; grid-row: 1; max-width: none; font-size: 1.2rem; }
+  .voice figcaption { grid-column: 1; grid-row: 2; text-align: left; padding-top: 0; }
+  .voice-photo { width: 88px; height: 110px; margin: 0 0 10px; }
+  .voices-group .voice:first-of-type { margin-top: 14px; }
+  .voices-group + .voices-group { margin-top: 52px; }
 }
 
 /* native anchor scrolling lands below the sticky header */

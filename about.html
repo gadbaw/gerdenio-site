@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=28" />
+  <link rel="stylesheet" href="assets/styles.css?v=29" />
   <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window)d.documentElement.classList.add("anim")}catch(e){}})(document);</script>
   <script defer src="assets/sprig.js?v=1"></script>
   <script defer src="assets/anim.js?v=4"></script>
@@ -151,18 +151,24 @@
     </div>
   </section>
 
-  <!-- VOICES (moved from the former voices.html, 2026-08-21) -->
+  <!-- VOICES — ledger layout: attribution in the rail, words in the reading column.
+       (Folded in from voices.html 2026-08-21; the anonymous and named groups were
+       merged into one section and redesigned 2026-08-28.) -->
   <section id="voices" class="section-alt">
     <div class="wrap">
-      <div class="read" style="margin:0 auto 40px;">
+      <div class="voices-head">
         <p class="eyebrow">Voices</p>
         <h2>In <em>their words.</em></h2>
         <p class="lede">Reflections from clients, colleagues, and clinicians who have worked with our founder, Dr. Gerdenio “Sonny” Manuel, S.J. — on the care, the accompaniment, and the depth of the work he has practiced for forty years.</p>
       </div>
-      <p class="eyebrow center" style="margin-bottom:30px;">In confidence</p>
+
       <div class="voices">
 
-        <figure class="voice voice--featured">
+        <div class="voices-group">
+          <h3 class="voices-label">In confidence</h3>
+          <p class="voices-note">Clients and supervisees, identified only by their role.</p>
+
+        <figure class="voice">
           <blockquote>When my husband was dying, Sonny offered steady, sturdy accompaniment. Working with him, we found words to speak the unspeakable — those inchoate feelings of loss, regret, even anger, which once spoken suddenly weighed less. Walking with him, we found the courage to enter fully the experience of dying, and to find in the midst of it great light, even hope. Though it ended in death, this was a journey of great healing. Sonny offers counseling grounded in reality and practiced with compassionate wisdom.</blockquote>
           <figcaption><span class="who">An educator and author</span></figcaption>
         </figure>
@@ -177,35 +183,30 @@
           <figcaption><span class="who">A PsyD graduate student</span></figcaption>
         </figure>
 
-      </div>
-    </div>
-  </section>
+        </div>
 
-  <!-- NAMED CLINICIANS (on the record, with portraits) -->
-  <section>
-    <div class="wrap">
-      <div class="botdiv center"><img src="assets/img/sprig-divider.svg?d=3" alt="" /></div>
-      <p class="eyebrow center">On the record</p>
-      <h2 class="center" style="margin-bottom:12px;">From fellow clinicians</h2>
-      <p class="center" style="max-width:54ch; margin:0 auto 6px; color:var(--muted);">Psychologists who know Dr. Manuel and his work firsthand — through supervision, shared practice, and referral.</p>
-      <div class="voices voices--people">
+        <div class="voices-group">
+          <h3 class="voices-label">On the record</h3>
+          <p class="voices-note">Psychologists who know Dr. Manuel and his work firsthand &mdash; through supervision, shared practice, and referral.</p>
 
-        <figure class="voice voice--person">
-          <div class="voice-id">
+        <figure class="voice">
+          <blockquote>I had the honor of both co-leading a psychotherapy group with Fr. Manuel and being supervised by him. In all my years of training, never did I grow more as a psychotherapist than I did from my time with him — not to mention the evolution of my own psychological processes just from being in his presence. Fr. Manuel has an amazing ability to quickly get to the root of the problem. He isn’t the kind of therapist to merely work on temporarily removing symptoms but rather, he follows the symptom to the core and affords his client space for a corrective experience, so that the root simply no longer produces the symptom. Fr. Manuel’s therapeutic personality, coupled with his elite training, is the recipe for the kind of therapist who is unmatched.</blockquote>
+          <figcaption>
             <img class="voice-photo" src="assets/img/beau-scott.jpg" alt="Beau Scott, PsyD" />
             <span class="who">Beau Scott, PsyD</span>
-          </div>
-          <blockquote>I had the honor of both co-leading a psychotherapy group with Fr. Manuel and being supervised by him. In all my years of training, never did I grow more as a psychotherapist than I did from my time with him — not to mention the evolution of my own psychological processes just from being in his presence. Fr. Manuel has an amazing ability to quickly get to the root of the problem. He isn’t the kind of therapist to merely work on temporarily removing symptoms but rather, he follows the symptom to the core and affords his client space for a corrective experience, so that the root simply no longer produces the symptom. Fr. Manuel’s therapeutic personality, coupled with his elite training, is the recipe for the kind of therapist who is unmatched.</blockquote>
+          </figcaption>
         </figure>
 
-        <figure class="voice voice--person">
-          <div class="voice-id">
+        <figure class="voice">
+          <blockquote>Dr. Manuel is a therapist’s therapist. He is clearly the person I would send my dearest friends and closest relatives to if they needed psychotherapy — and I’ve been in practice myself for over thirty years. He perfectly blends excellent clinical skills based in psychology, spirituality, and his rich personal experience to offer clients the very best psychotherapy experience they can hope to ever receive.</blockquote>
+          <figcaption>
             <img class="voice-photo" src="assets/img/thomas-plante.jpg" alt="Thomas G. Plante, Ph.D., ABPP" />
             <span class="who">Thomas G. Plante, Ph.D., ABPP</span>
-            <span class="role">Professor, Santa Clara University · Editor, <em>Spirituality in Clinical Practice</em></span>
-          </div>
-          <blockquote>Dr. Manuel is a therapist’s therapist. He is clearly the person I would send my dearest friends and closest relatives to if they needed psychotherapy — and I’ve been in practice myself for over thirty years. He perfectly blends excellent clinical skills based in psychology, spirituality, and his rich personal experience to offer clients the very best psychotherapy experience they can hope to ever receive.</blockquote>
+            <span class="role">Professor, Santa Clara University &middot; Editor, <em>Spirituality in Clinical Practice</em></span>
+          </figcaption>
         </figure>
+
+        </div>
 
       </div>
     </div>
