@@ -251,6 +251,27 @@ section { padding: 84px 0; }
 .cred-list { list-style: none; padding: 0; margin: 18px 0 0; font-size: 0.92rem; color: var(--ink-soft); }
 .cred-list li { padding: 5px 0; border-bottom: 1px solid var(--line); }
 
+/* ---------- Record (a chronology of roles) ---------- */
+.record { margin: 0; }
+.record-item {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 30px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+}
+.record-item:last-child { border-bottom: 1px solid var(--line); }
+.record-when {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--sun);
+  letter-spacing: 0.05em;
+  padding-top: 5px;
+  white-space: nowrap;
+}
+.record-item h3 { font-size: 1.24rem; margin: 0 0 0.42em; }
+.record-item p { margin: 0; font-size: 0.98rem; }
+
 /* ---------- Quote / testimonial ---------- */
 .quote {
   font-family: var(--serif);
@@ -327,6 +348,8 @@ section { padding: 84px 0; }
 @media (max-width: 860px) {
   .grid-2, .grid-3, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
   .person { grid-template-columns: 1fr; gap: 24px; }
+  .record-item { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
+  .record-when { padding-top: 0; }
   .person .portrait { max-width: 280px; }
   .nav-links {
     display: none; position: absolute; top: 100%; left: 0; right: 0;
@@ -518,16 +541,23 @@ section { padding: 84px 0; }
 .voice blockquote {
   margin: 0; font-family: var(--serif); font-weight: 300;
   font-size: 1.4rem; line-height: 1.55; color: var(--ink); letter-spacing: -0.005em;
-  text-indent: -0.48em;  /* hangs the opening quote mark into the margin */
+  text-indent: -0.55em;  /* hangs the opening quote mark into the margin */
 }
 .voice--featured blockquote { font-size: 1.68rem; line-height: 1.5; }
 /* Quotation marks are real characters set around the quote: the opening
    mark hangs into the left margin (negative first-line indent) so the text
    block stays flush, and every quote closes as well as it opens. */
 .voice blockquote::before,
-.voice blockquote::after { font-size: 1.12em; line-height: 0; color: var(--sun); }
+.voice blockquote::after { font-size: 1.3em; line-height: 0; color: var(--sun); }
 .voice blockquote::before { content: "\201C"; }
 .voice blockquote::after  { content: "\201D"; }
+/* the featured quote carries the large gold marks instead — set as a pair,
+   opening above the text and closing below it, so the quote is bookended */
+.voice--featured blockquote { text-indent: 0; }
+.voice--featured blockquote::before,
+.voice--featured blockquote::after { content: none; }
+.voice-mark { display: block; height: 1.1rem; font-family: var(--serif); font-size: 3.4rem; line-height: 0; color: var(--sun); }
+.voice-mark--close { height: 0; margin-top: 2.4rem; text-align: right; }
 .voice figcaption { margin-top: 1.3rem; }
 .voice .who { display: block; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--accent-dk); }
 .voice .role { display: block; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 3px; }
