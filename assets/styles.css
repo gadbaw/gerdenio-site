@@ -585,11 +585,7 @@ section { padding: 84px 0; }
   width: 52px; height: 52px; flex: none; border-radius: 50%;
   object-fit: cover; object-position: 50% 22%; display: block;
 }
-/* the lead voice: full width, a size up, a little more air */
-.voice--lead { max-width: 760px; margin: 0 auto 26px; padding: 40px 44px; }
-.voice--lead blockquote { font-size: 1.34rem; line-height: 1.6; }
-.voice--lead figcaption { margin-top: 28px; }
-/* the rest fill two balanced columns without a fixed grid */
+/* every voice gets the same card; they fill two balanced columns */
 .voices-wall { columns: 2; column-gap: 26px; }
 .voices-wall .voice { break-inside: avoid; margin-bottom: 26px; }
 @media (max-width: 860px) {
@@ -597,8 +593,6 @@ section { padding: 84px 0; }
 }
 @media (max-width: 620px) {
   .voice { padding: 28px 24px; }
-  .voice--lead { padding: 30px 26px; }
-  .voice--lead blockquote { font-size: 1.22rem; }
 }
 
 /* native anchor scrolling lands below the sticky header */
