@@ -563,9 +563,15 @@ section { padding: 84px 0; }
   font-size: 1.16rem; line-height: 1.66; letter-spacing: -0.004em; color: var(--ink);
   text-wrap: pretty;
 }
-/* Real quotation marks around every quote, set at text size in the warm accent. */
-.voice blockquote::before { content: "\201C"; color: var(--sun); }
-.voice blockquote::after  { content: "\201D"; color: var(--sun); }
+/* Real quotation marks around every quote — set well above text size in the
+   warm accent so they read as a flourish, with a zero line-height so the
+   larger glyphs never push the lines apart. */
+.voice blockquote::before,
+.voice blockquote::after {
+  font-size: 1.75em; line-height: 0; color: var(--sun);
+}
+.voice blockquote::before { content: "\201C"; }
+.voice blockquote::after  { content: "\201D"; }
 .voice figcaption { display: flex; align-items: center; gap: 14px; margin-top: 24px; }
 .voice .who {
   display: block; font-family: var(--sans); font-weight: 600; font-size: 0.88rem;
