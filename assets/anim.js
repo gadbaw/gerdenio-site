@@ -11,7 +11,7 @@
       '.page-head .eyebrow', '.page-head h1', '.page-head .lede',
       '.article-head .post-meta', '.article-head h1', '.article-head .byline', '.article-head .standfirst',
       'h2', '.card', '.person', '.figure',
-      '.quote', 'blockquote', '.voice', '.notice', '.tribute',
+      '.quote', 'blockquote', '.voice', '.record-item', '.notice', '.tribute',
       '.contact-detail', '.field'
     ].join(',');
 
