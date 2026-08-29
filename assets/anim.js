@@ -55,9 +55,24 @@
       });
     }
     revealInView();
-    /* one more pass after first paint, and a final safety net */
+    /* one more pass after first paint, then keep checking on scroll. This is
+       the safety net: it never reveals anything the reader has not reached, so
+       elements below the fold still arrive as they are scrolled to. */
     requestAnimationFrame(revealInView);
-    setTimeout(function () { all.forEach(function (el) { el.classList.add('is-in'); }); }, 2500);
+
+    var last = 0;
+    function onScroll() {
+      var now = +new Date();
+      if (now - last < 80) return;
+      last = now;
+      revealInView();
+      if (!all.some(function (el) { return !el.classList.contains('is-in'); })) {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
   }
 
   if (document.readyState === 'loading') {
