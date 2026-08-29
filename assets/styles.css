@@ -556,18 +556,17 @@ section { padding: 84px 0; }
 }
 .voice {
   background: var(--card); border: 1px solid var(--line); border-radius: 3px;
-  max-width: 730px; margin: 0 auto 26px; padding: 42px 46px;
+  padding: 34px 32px; margin: 0;
 }
-.voice:last-child { margin-bottom: 0; }
 .voice blockquote {
   margin: 0; font-family: var(--serif); font-weight: 300;
-  font-size: 1.32rem; line-height: 1.62; letter-spacing: -0.005em; color: var(--ink);
+  font-size: 1.16rem; line-height: 1.66; letter-spacing: -0.004em; color: var(--ink);
   text-wrap: pretty;
 }
 /* Real quotation marks around every quote, set at text size in the warm accent. */
 .voice blockquote::before { content: "\201C"; color: var(--sun); }
 .voice blockquote::after  { content: "\201D"; color: var(--sun); }
-.voice figcaption { display: flex; align-items: center; gap: 15px; margin-top: 26px; }
+.voice figcaption { display: flex; align-items: center; gap: 14px; margin-top: 24px; }
 .voice .who {
   display: block; font-family: var(--sans); font-weight: 600; font-size: 0.88rem;
   line-height: 1.35; letter-spacing: 0.01em; color: var(--accent-dk);
@@ -577,18 +576,23 @@ section { padding: 84px 0; }
   line-height: 1.45; color: var(--muted); margin-top: 3px;
 }
 .voice-photo {
-  width: 56px; height: 56px; flex: none; border-radius: 50%;
+  width: 52px; height: 52px; flex: none; border-radius: 50%;
   object-fit: cover; object-position: 50% 22%; display: block;
 }
-/* the lead voice: a size up again, and a little more air around it */
-.voice--lead { max-width: 800px; padding: 52px 48px; margin-bottom: 30px; }
-.voice--lead blockquote { font-size: 1.5rem; line-height: 1.54; }
-.voice--lead figcaption { margin-top: 30px; }
-@media (max-width: 700px) {
-  .voice { padding: 30px 26px; margin-bottom: 20px; }
-  .voice blockquote { font-size: 1.2rem; line-height: 1.62; }
-  .voice--lead { padding: 32px 26px; }
-  .voice--lead blockquote { font-size: 1.28rem; }
+/* the lead voice: full width, a size up, a little more air */
+.voice--lead { max-width: 760px; margin: 0 auto 26px; padding: 40px 44px; }
+.voice--lead blockquote { font-size: 1.34rem; line-height: 1.6; }
+.voice--lead figcaption { margin-top: 28px; }
+/* the rest fill two balanced columns without a fixed grid */
+.voices-wall { columns: 2; column-gap: 26px; }
+.voices-wall .voice { break-inside: avoid; margin-bottom: 26px; }
+@media (max-width: 860px) {
+  .voices-wall { columns: 1; }
+}
+@media (max-width: 620px) {
+  .voice { padding: 28px 24px; }
+  .voice--lead { padding: 30px 26px; }
+  .voice--lead blockquote { font-size: 1.22rem; }
 }
 
 /* native anchor scrolling lands below the sticky header */
