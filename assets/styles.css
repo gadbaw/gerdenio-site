@@ -332,6 +332,32 @@ fieldset.field legend { display: block; font-size: 0.85rem; font-weight: 600; ma
 .opt input:checked + span { background: var(--accent-dk); border-color: var(--accent-dk); color: #fff; }
 .opt input:focus-visible + span { outline: 2px solid var(--accent-soft); outline-offset: 1px; border-color: var(--accent); }
 .opts-note { margin: 10px 0 0; }
+.opt-all { margin-bottom: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* the week grid: rows = times of day, columns = days; a filled cell = available */
+.weekgrid { border-collapse: separate; border-spacing: 3px; table-layout: fixed; width: auto; margin: 0 -3px; }
+.weekgrid th { padding: 0; font-weight: 600; color: var(--ink); text-align: center; }
+.weekgrid thead th { height: 30px; vertical-align: bottom; }
+.weekgrid tbody th { text-align: left; width: 66px; }
+.weekgrid button { appearance: none; background: none; border: 0; padding: 4px 2px; margin: 0; font: inherit; font-size: 0.8rem; font-weight: 600; color: var(--ink); cursor: pointer; border-radius: 6px; line-height: 1.15; text-align: left; }
+.weekgrid thead button { text-align: center; width: 100%; }
+.weekgrid button:hover { background: var(--accent-soft); color: var(--accent-dk); }
+.weekgrid button:focus-visible { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+.weekgrid button small { display: block; font-size: 0.68rem; font-weight: 400; color: var(--muted); }
+.weekgrid .wg-long { display: none; }
+.weekgrid td { padding: 0; width: 34px; height: 34px; }
+.wg-cell { display: block; position: relative; width: 34px; height: 34px; margin: 0; cursor: pointer; }
+.wg-cell input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.wg-cell > span[aria-hidden] { display: block; width: 100%; height: 100%; border: 1px solid var(--line); border-radius: 7px; background: #fff; transition: background .12s, border-color .12s; }
+.wg-cell:hover > span[aria-hidden] { border-color: var(--accent); }
+.wg-cell input:checked + span { background: var(--accent-dk); border-color: var(--accent-dk); }
+.wg-cell input:focus-visible + span { outline: 2px solid var(--accent-soft); outline-offset: 1px; border-color: var(--accent); }
+@media (min-width: 640px) {
+  .weekgrid .wg-short { display: none; }
+  .weekgrid .wg-long { display: inline; }
+  .weekgrid tbody th { width: 104px; }
+  .weekgrid td, .wg-cell { width: 42px; height: 40px; }
+}
 .field-hint a { color: var(--accent-dk); }
 @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; gap: 0; } }
 .field input:focus, .field textarea:focus, .field select:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
