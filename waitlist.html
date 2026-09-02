@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Waitlist · Gerdenio Manuel Center for Psychotherapy</title>
-  <meta name="description" content="Join the waitlist at the Gerdenio Manuel Center for Psychotherapy. We'll reach out personally when an opening becomes available." />
+  <title>Getting started · Gerdenio Manuel Center for Psychotherapy</title>
+  <meta name="description" content="Tell us what you're looking for. A few questions about fit, then book a free 15-minute call with a clinician at the Gerdenio Manuel Center for Psychotherapy." />
   <!-- Open Graph / social sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Gerdenio Manuel Center for Psychotherapy" />
-  <meta property="og:title" content="Waitlist · Gerdenio Manuel Center for Psychotherapy" />
-  <meta property="og:description" content="Join the waitlist at the Gerdenio Manuel Center for Psychotherapy. We'll reach out personally when an opening becomes available." />
+  <meta property="og:title" content="Getting started · Gerdenio Manuel Center for Psychotherapy" />
+  <meta property="og:description" content="Tell us what you're looking for. A few questions about fit, then book a free 15-minute call with a clinician at the Gerdenio Manuel Center for Psychotherapy." />
   <meta property="og:url" content="https://gerdenio.com/waitlist.html" />
   <meta property="og:image" content="https://gerdenio.com/assets/img/og-image.png?v=2" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Gerdenio Manuel Center for Psychotherapy — Pathways to hope and healing." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Waitlist · Gerdenio Manuel Center for Psychotherapy" />
-  <meta name="twitter:description" content="Join the waitlist at the Gerdenio Manuel Center for Psychotherapy. We'll reach out personally when an opening becomes available." />
+  <meta name="twitter:title" content="Getting started · Gerdenio Manuel Center for Psychotherapy" />
+  <meta name="twitter:description" content="Tell us what you're looking for. A few questions about fit, then book a free 15-minute call with a clinician at the Gerdenio Manuel Center for Psychotherapy." />
   <meta name="twitter:image" content="https://gerdenio.com/assets/img/og-image.png?v=2" />
   <link rel="canonical" href="https://gerdenio.com/waitlist.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,9 +55,9 @@
   <section class="page-head">
     <div class="wrap read">
       <span class="head-rule" aria-hidden="true"></span>
-      <p class="eyebrow">Waitlist</p>
-      <h1>Hold <em>a place.</em></h1>
-      <p class="lede">When our schedules are full, the waitlist is how we hold your place. Leave your name below and one of our clinicians will contact you personally when an opening becomes available — there's nothing more you need to do in the meantime.</p>
+      <p class="eyebrow">Getting started</p>
+      <h1>Tell us what <em>you're looking for.</em></h1>
+      <p class="lede">A few questions help us tell quickly whether we're the right fit — and if we are, you can book a free 15-minute call at the end. If our schedules are full, this is also how we hold your place: one of our clinicians will contact you personally when an opening becomes available.</p>
     </div>
   </section>
 
@@ -67,37 +67,133 @@
 
       <!-- FORM -->
       <div>
-        <h2>Join the waitlist</h2>
-        <p>A few details are all we need. If you'd rather write to us, you're welcome to email <a href="mailto:hello@gerdenio.com">hello@gerdenio.com</a>.</p>
+        <h2>Begin here</h2>
         <form id="waitlist-form" action="https://portal.gerdenio.com/waitlist/join" method="POST">
-          <div class="field">
-            <label for="first_name">First name</label>
-            <input type="text" id="first_name" name="first_name" autocomplete="given-name" required />
+          <div class="field-row">
+            <div class="field">
+              <label for="first_name">First name</label>
+              <input type="text" id="first_name" name="first_name" autocomplete="given-name" required />
+            </div>
+            <div class="field">
+              <label for="last_name">Last name</label>
+              <input type="text" id="last_name" name="last_name" autocomplete="family-name" required />
+            </div>
           </div>
-          <div class="field">
-            <label for="last_name">Last name</label>
-            <input type="text" id="last_name" name="last_name" autocomplete="family-name" required />
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="opt">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
           </div>
+
           <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" autocomplete="email" required />
+            <label for="clinician">Who would you like to work with?</label>
+            <select id="clinician" name="clinician">
+              <option value="">No preference</option>
+              <option value="ben">Benjamin Gadbaw, M.A.</option>
+              <option value="sonny">Gerdenio Manuel, S.J., Ph.D.</option>
+            </select>
           </div>
+
           <div class="field">
-            <label for="phone">Phone (optional)</label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            <label for="message">What brings you to therapy now?</label>
+            <textarea id="message" name="message" rows="4" placeholder="A sentence or two is plenty — individual or couples work, what you're hoping for, any questions."></textarea>
+            <p class="field-hint">For your privacy, please keep clinical or health details for our conversation — this form goes only to our own secure practice system, but the details are better said in person.</p>
           </div>
-          <div class="field">
-            <label for="message">Anything you'd like us to know? (optional)</label>
-            <textarea id="message" name="message" rows="4" placeholder="A few sentences about what you're looking for — a clinician you'd like to work with, scheduling constraints, individual or couples work, any questions."></textarea>
-            <p class="field-hint">For your privacy, please don't include sensitive clinical or health details here — we'll discuss those securely once we're in touch.</p>
-          </div>
-          <!-- spam honeypot: visible to bots, hidden from people -->
+
+          <fieldset class="field">
+            <legend>How would you like to meet?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="format" value="in_person" /><span>In person, San Francisco</span></label>
+              <label class="opt"><input type="radio" name="format" value="video" /><span>Video</span></label>
+              <label class="opt"><input type="radio" name="format" value="either" /><span>Either</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>When can you reliably keep a weekly appointment?</legend>
+            <div class="opts">
+              <label class="opt"><input type="checkbox" name="availability" value="weekday_morning" /><span>Weekday mornings</span></label>
+              <label class="opt"><input type="checkbox" name="availability" value="weekday_midday" /><span>Weekday midday</span></label>
+              <label class="opt"><input type="checkbox" name="availability" value="weekday_afternoon" /><span>Weekday afternoons</span></label>
+              <label class="opt"><input type="checkbox" name="availability" value="weekday_evening" /><span>Weekday evenings</span></label>
+              <label class="opt"><input type="checkbox" name="availability" value="weekend" /><span>Weekends</span></label>
+              <label class="opt"><input type="checkbox" name="availability" value="flexible" /><span>Flexible</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>What weekly fee can you manage?</legend>
+            <p class="field-hint" style="margin:0 0 10px;">The Center is an out-of-network practice; each clinician sets their own fee and we discuss it openly on the first call. <a href="fees-and-insurance.html">Fees &amp; insurance</a></p>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="fee" value="under_150" /><span>Under $150</span></label>
+              <label class="opt"><input type="radio" name="fee" value="150_250" /><span>$150–$250</span></label>
+              <label class="opt"><input type="radio" name="fee" value="250_400" /><span>$250–$400</span></label>
+              <label class="opt"><input type="radio" name="fee" value="400_plus" /><span>$400 or more</span></label>
+              <label class="opt"><input type="radio" name="fee" value="reduced" /><span>I'd need to discuss a reduced fee</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Are you hoping to use insurance?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="insurance" value="self_pay" /><span>No, I'll pay directly</span></label>
+              <label class="opt"><input type="radio" name="insurance" value="oon" /><span>I'd like to use out-of-network benefits</span></label>
+              <label class="opt"><input type="radio" name="insurance" value="in_network" /><span>I need a provider in my plan's network</span></label>
+            </div>
+            <p class="field-hint opts-note" id="insurance-note" hidden>We're not in any plan's network. We provide monthly superbills you can submit for out-of-network reimbursement, but if in-network coverage is essential, we may not be the right fit. You're welcome to continue either way.</p>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Have you been in therapy before?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="prior_therapy" value="none" /><span>No</span></label>
+              <label class="opt"><input type="radio" name="prior_therapy" value="past" /><span>Yes, in the past</span></label>
+              <label class="opt"><input type="radio" name="prior_therapy" value="current" /><span>Yes, currently or recently</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>When would you like to start?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="start" value="asap" /><span>As soon as possible</span></label>
+              <label class="opt"><input type="radio" name="start" value="soon" /><span>Within a month or two</span></label>
+              <label class="opt"><input type="radio" name="start" value="exploring" /><span>Just exploring for now</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>How should we reach you?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="contact_pref" value="email" /><span>Email</span></label>
+              <label class="opt"><input type="radio" name="contact_pref" value="phone" /><span>Phone call</span></label>
+              <label class="opt"><input type="radio" name="contact_pref" value="text" /><span>Text message</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>How did you find us?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="source" value="psychology_today" /><span>Psychology Today</span></label>
+              <label class="opt"><input type="radio" name="source" value="referral" /><span>A referral</span></label>
+              <label class="opt"><input type="radio" name="source" value="search" /><span>Web search</span></label>
+              <label class="opt"><input type="radio" name="source" value="other" /><span>Other</span></label>
+            </div>
+            <div class="field" id="source-detail" hidden style="margin:10px 0 0;">
+              <label for="source_detail">From whom, or where?</label>
+              <input type="text" id="source_detail" name="source_detail" maxlength="200" />
+            </div>
+          </fieldset>
+
           <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
           <!-- how long the form was on screen before submitting. Scripts off means
-               it stays empty, which counts against nobody — only an impossibly fast
-               submission is treated as a bot signal. -->
+               no value, which is never held against anyone. -->
           <input type="hidden" name="fill_ms" value="" />
-          <button type="submit" class="btn" id="waitlist-submit">Join the waitlist</button>
+          <button type="submit" class="btn" id="waitlist-submit">Send</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -106,12 +202,16 @@
       <div>
         <h2>What to expect</h2>
         <div class="contact-detail">
-          <h4>A confirmation, right away</h4>
-          <p>You'll receive an email confirming your place on the list.</p>
+          <h4>Two minutes, no account</h4>
+          <p>Nothing here asks for your history. The questions are about fit — format, schedule, fee — so we can say early whether we can help.</p>
         </div>
         <div class="contact-detail">
-          <h4>A personal call when a place opens</h4>
-          <p>One of our clinicians — not an automated message — will reach out to talk about fit and next steps.</p>
+          <h4>A free 15-minute call</h4>
+          <p>When a clinician has an opening, you'll be offered a time to talk right after you send this. If none work, one of us — not an automated message — will reach out personally.</p>
+        </div>
+        <div class="contact-detail">
+          <h4>A confirmation, right away</h4>
+          <p>You'll receive an email confirming we have your inquiry.</p>
         </div>
         <div class="contact-detail">
           <h4>Your privacy</h4>
@@ -186,13 +286,37 @@
 
     var loadedAt = Date.now();
 
+    // A clinician's own link (waitlist.html?for=ben) preselects them.
+    try {
+      var who = new URLSearchParams(location.search).get('for');
+      var sel = form.querySelector('select[name="clinician"]');
+      if (who && sel && sel.querySelector('option[value="' + who + '"]')) sel.value = who;
+    } catch (e) {}
+
+    // Answer-dependent notes: say the out-of-network fact where it matters, and
+    // ask "from whom?" only when a referral was chosen.
+    function reveal(name, value, el) {
+      form.addEventListener('change', function (e) {
+        if (e.target && e.target.name === name) el.hidden = (e.target.value !== value);
+      });
+    }
+    reveal('insurance', 'in_network', document.getElementById('insurance-note'));
+    reveal('source', 'referral', document.getElementById('source-detail'));
+    reveal('source', 'other', document.getElementById('source-detail'));
+    form.addEventListener('change', function (e) {
+      if (e.target && e.target.name === 'source') {
+        document.getElementById('source-detail').hidden =
+          !(e.target.value === 'referral' || e.target.value === 'other');
+      }
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var ms = form.querySelector('input[name="fill_ms"]');
       if (ms) ms.value = String(Date.now() - loadedAt);
       btn.disabled = true;
       var label = btn.textContent;
-      btn.textContent = 'Joining…';
+      btn.textContent = 'Sending…';
       setStatus('', '');
 
       fetch(form.action, {
@@ -203,9 +327,15 @@
         return res.json().then(function (d) { return { ok: res.ok, data: d }; });
       }).then(function (r) {
         if (r.ok && r.data && r.data.ok) {
+          if (r.data.next_url && /^https:\/\/portal\.gerdenio\.com\//.test(r.data.next_url)) {
+            // a consultation is on offer: the booking page is the thank-you page
+            setStatus('Thank you. Taking you to book a call…', 'success');
+            window.location.assign(r.data.next_url);
+            return;
+          }
           form.reset();
           form.classList.add('is-sent');
-          setStatus(r.data.message || 'You’re on the waitlist. We’ve sent a confirmation to your email.', 'success');
+          setStatus(r.data.message || 'Thank you. We have your inquiry and have sent a confirmation to your email.', 'success');
         } else {
           setStatus((r.data && r.data.error) || 'Sorry — we couldn’t add you just now. Please email hello@gerdenio.com and we’ll add you ourselves.', 'error');
         }

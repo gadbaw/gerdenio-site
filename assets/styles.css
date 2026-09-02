@@ -315,6 +315,25 @@ section { padding: 84px 0; }
   padding-right: 40px;
 }
 .field textarea { min-height: 140px; resize: vertical; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.field label .opt { font-weight: 400; color: var(--muted); }
+fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
+fieldset.field legend { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); padding: 0; }
+/* answer chips: one tap each, the chosen one fills; the native control stays for a11y */
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt { position: relative; display: inline-flex; align-items: center; margin: 0; cursor: pointer; }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.opt span {
+  display: inline-block; padding: 8px 14px; font-size: 0.92rem; line-height: 1.35;
+  border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink);
+  transition: background .12s, border-color .12s, color .12s;
+}
+.opt:hover span { border-color: var(--accent); }
+.opt input:checked + span { background: var(--accent-dk); border-color: var(--accent-dk); color: #fff; }
+.opt input:focus-visible + span { outline: 2px solid var(--accent-soft); outline-offset: 1px; border-color: var(--accent); }
+.opts-note { margin: 10px 0 0; }
+.field-hint a { color: var(--accent-dk); }
+@media (max-width: 560px) { .field-row { grid-template-columns: 1fr; gap: 0; } }
 .field input:focus, .field textarea:focus, .field select:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
 .contact-detail { margin-bottom: 26px; }
 .contact-detail h4 { margin-bottom: 4px; }
