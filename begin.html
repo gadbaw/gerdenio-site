@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Getting started · Gerdenio Manuel Center for Psychotherapy</title>
-  <meta name="description" content="Tell us what you're looking for. A few questions about fit, then book a free 15-minute call with a clinician at the Gerdenio Manuel Center for Psychotherapy." />
+  <meta name="description" content="Tell us what you're looking for. A few questions about fit, and one of our clinicians at the Gerdenio Manuel Center for Psychotherapy will be in touch personally." />
   <!-- Open Graph / social sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Gerdenio Manuel Center for Psychotherapy" />
   <meta property="og:title" content="Getting started · Gerdenio Manuel Center for Psychotherapy" />
-  <meta property="og:description" content="Tell us what you're looking for. A few questions about fit, then book a free 15-minute call with a clinician at the Gerdenio Manuel Center for Psychotherapy." />
+  <meta property="og:description" content="Tell us what you're looking for. A few questions about fit, and one of our clinicians at the Gerdenio Manuel Center for Psychotherapy will be in touch personally." />
   <meta property="og:url" content="https://gerdenio.com/begin.html" />
   <meta property="og:image" content="https://gerdenio.com/assets/img/og-image.png?v=2" />
   <meta property="og:image:width" content="1200" />
@@ -17,7 +17,7 @@
   <meta property="og:image:alt" content="Gerdenio Manuel Center for Psychotherapy — Pathways to hope and healing." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Getting started · Gerdenio Manuel Center for Psychotherapy" />
-  <meta name="twitter:description" content="Tell us what you're looking for. A few questions about fit, then book a free 15-minute call with a clinician at the Gerdenio Manuel Center for Psychotherapy." />
+  <meta name="twitter:description" content="Tell us what you're looking for. A few questions about fit, and one of our clinicians at the Gerdenio Manuel Center for Psychotherapy will be in touch personally." />
   <meta name="twitter:image" content="https://gerdenio.com/assets/img/og-image.png?v=2" />
   <link rel="canonical" href="https://gerdenio.com/begin.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +57,7 @@
       <span class="head-rule" aria-hidden="true"></span>
       <p class="eyebrow">Getting started</p>
       <h1>Tell us what <em>you're looking for.</em></h1>
-      <p class="lede">A few questions help us tell quickly whether we're the right fit — and if we are, you can book a free 15-minute call at the end. If our schedules are full, this is also how we hold your place: one of our clinicians will contact you personally when an opening becomes available.</p>
+      <p class="lede">A few questions help us tell quickly whether we're the right fit, so we can answer you with something better than a form letter. One of our clinicians will read what you write and contact you personally. If our schedules are full, this is also how we hold your place.</p>
     </div>
   </section>
 
@@ -236,8 +236,8 @@
           <p>Format, schedule, and fee: the practical questions that decide whether we can work together. What brings you here can wait for the conversation.</p>
         </div>
         <div class="contact-detail">
-          <h4>A free 15-minute call</h4>
-          <p>When a clinician has an opening, you'll be offered a time to talk right after you send this. If none work, one of us — not an automated message — will reach out personally.</p>
+          <h4>A personal reply</h4>
+          <p>One of us reads every inquiry — not an automated message — and will be in touch about fit and next steps.</p>
         </div>
         <div class="contact-detail">
           <h4>A confirmation, right away</h4>
@@ -421,7 +421,7 @@
         if (r.ok && r.data && r.data.ok) {
           if (r.data.next_url && /^https:\/\/portal\.gerdenio\.com\//.test(r.data.next_url)) {
             // a consultation is on offer: the booking page is the thank-you page
-            setStatus('Thank you. Taking you to book a call…', 'success');
+            setStatus('Thank you. Taking you to the next step…', 'success');
             window.location.assign(r.data.next_url);
             return;
           }
