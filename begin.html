@@ -90,19 +90,31 @@
             </div>
           </div>
 
+          <fieldset class="field">
+            <legend>What are you looking for?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="service" value="individual" /><span>Individual psychotherapy</span></label>
+              <label class="opt"><input type="radio" name="service" value="couples" /><span>Couple counseling</span></label>
+              <label class="opt"><input type="radio" name="service" value="assessment" /><span>Psychological assessment</span></label>
+            </div>
+          </fieldset>
+
           <div class="field">
-            <label for="clinician">Who would you like to work with?</label>
-            <select id="clinician" name="clinician">
-              <option value="">No preference</option>
-              <option value="ben">Benjamin Gadbaw, M.A.</option>
-              <option value="sonny">Gerdenio Manuel, S.J., Ph.D.</option>
-              <option value="elasha">Elasha Racks, M.S.</option>
-            </select>
+            <div id="clinician-choice" data-when="therapy">
+              <label for="clinician">Who would you like to work with?</label>
+              <select id="clinician" name="clinician">
+                <option value="">No preference</option>
+                <option value="ben">Benjamin Gadbaw, M.A.</option>
+                <option value="sonny">Gerdenio Manuel, S.J., Ph.D.</option>
+                <option value="elasha">Elasha Racks, M.S.</option>
+              </select>
+            </div>
+            <p class="field-hint" data-when="assessment" hidden style="margin:0;">Psychological assessment at the Center is done by <strong>Benjamin Gadbaw, M.A.</strong></p>
           </div>
 
           <div class="field">
-            <label for="message">What brings you to therapy now?</label>
-            <textarea id="message" name="message" rows="4" placeholder="A sentence or two is plenty — individual or couples work, what you're hoping for, any questions."></textarea>
+            <label for="message"><span data-when="therapy">What brings you to therapy now?</span><span data-when="assessment" hidden>What are you hoping the assessment will answer?</span></label>
+            <textarea id="message" name="message" rows="4" placeholder="A sentence or two is plenty — what you're hoping for, and any questions you have."></textarea>
             <p class="field-hint">For your privacy, please keep clinical or health details for our conversation — this form goes only to our own secure practice system, but the details are better said in person.</p>
           </div>
 
@@ -116,7 +128,7 @@
           </fieldset>
 
           <fieldset class="field">
-            <legend>When could you keep a weekly appointment?</legend>
+            <legend><span data-when="therapy">When could you keep a weekly appointment?</span><span data-when="assessment" hidden>When could you come in for longer appointments?</span></legend>
             <p class="field-hint" style="margin:0 0 10px;">Tap the times that work for you. Tapping a day or a time of day selects the whole column or row.</p>
             <label class="opt opt-all"><input type="checkbox" name="slots_all" value="1" /><span>My schedule is flexible</span></label>
             <table class="weekgrid" id="weekgrid">
@@ -130,7 +142,7 @@
             </table>
           </fieldset>
 
-          <fieldset class="field">
+          <fieldset class="field" id="fee-therapy" data-when="therapy">
             <legend>What weekly fee can you manage?</legend>
             <p class="field-hint" style="margin:0 0 10px;">The Center is an out-of-network practice; each clinician sets their own fee and we discuss it openly on the first call. <a href="fees-and-insurance.html">Fees &amp; insurance</a></p>
             <div class="opts">
@@ -140,6 +152,19 @@
               <label class="opt"><input type="radio" name="fee" value="400_plus" /><span>$400 or more</span></label>
               <label class="opt"><input type="radio" name="fee" value="no_concern" /><span>Cost isn't a concern</span></label>
               <label class="opt"><input type="radio" name="fee" value="reduced" /><span>I'd need to discuss a reduced fee</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field" id="fee-assessment" data-when="assessment" hidden>
+            <legend>What is your budget for the assessment?</legend>
+            <p class="field-hint" style="margin:0 0 10px;">An assessment is quoted as a package once we know what you need answered, so the total depends on the scope. <a href="fees-and-insurance.html" target="_blank" rel="noopener">Fees &amp; insurance</a></p>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="fee_assessment" value="under_3000" /><span>Under $3,000</span></label>
+              <label class="opt"><input type="radio" name="fee_assessment" value="3000_5000" /><span>$3,000–$5,000</span></label>
+              <label class="opt"><input type="radio" name="fee_assessment" value="5000_7500" /><span>$5,000–$7,500</span></label>
+              <label class="opt"><input type="radio" name="fee_assessment" value="7500_plus" /><span>$7,500 or more</span></label>
+              <label class="opt"><input type="radio" name="fee_assessment" value="no_concern" /><span>Cost isn't a concern</span></label>
+              <label class="opt"><input type="radio" name="fee_assessment" value="discuss" /><span>I'd need to discuss payment options</span></label>
             </div>
           </fieldset>
 
@@ -154,7 +179,7 @@
           </fieldset>
 
           <fieldset class="field">
-            <legend>Have you been in therapy before?</legend>
+            <legend><span data-when="therapy">Have you been in therapy before?</span><span data-when="assessment" hidden>Have you had psychological testing before?</span></legend>
             <div class="opts">
               <label class="opt"><input type="radio" name="prior_therapy" value="none" /><span>No</span></label>
               <label class="opt"><input type="radio" name="prior_therapy" value="past" /><span>Yes, in the past</span></label>
@@ -297,6 +322,44 @@
       var sel = form.querySelector('select[name="clinician"]');
       if (who && sel && sel.querySelector('option[value="' + who + '"]')) sel.value = who;
     } catch (e) {}
+
+    // What someone is looking for changes what the rest of the form should ask:
+    // an assessment is a few long appointments quoted as a package, not a standing
+    // weekly hour, and only one clinician does them. Elements carry data-when, and
+    // the therapy wording is what the page ships with, so this is all additive to
+    // a form that already works with scripts off.
+    var priorClinician = null;
+    var MSG_PLACEHOLDER = {
+      therapy: "A sentence or two is plenty — what you're hoping for, and any questions you have.",
+      assessment: "A sentence or two is plenty — the questions you want answered, who referred you, and any deadline you're working toward."
+    };
+    function applyService(value) {
+      var mode = value === 'assessment' ? 'assessment' : 'therapy';
+      Array.prototype.forEach.call(form.querySelectorAll('[data-when]'), function (el) {
+        el.hidden = el.dataset.when !== mode;
+      });
+      // only one fee question may ever post: clear whichever one is now hidden
+      var stale = form.querySelectorAll((mode === 'assessment' ? '#fee-therapy' : '#fee-assessment') + ' input');
+      Array.prototype.forEach.call(stale, function (i) { i.checked = false; });
+      var msg = document.getElementById('message');
+      if (msg) msg.placeholder = MSG_PLACEHOLDER[mode];
+      // Assessment settles the clinician, but choosing it must not quietly rewrite
+      // a preference someone already expressed: remember it and put it back if they
+      // move to a therapy option again.
+      var sel = form.querySelector('select[name="clinician"]');
+      if (sel) {
+        if (mode === 'assessment') {
+          if (priorClinician === null) priorClinician = sel.value;
+          sel.value = 'ben';
+        } else if (priorClinician !== null) {
+          sel.value = priorClinician;
+          priorClinician = null;
+        }
+      }
+    }
+    form.addEventListener('change', function (e) {
+      if (e.target && e.target.name === 'service') applyService(e.target.value);
+    });
 
     // Answer-dependent notes: say the out-of-network fact where it matters, and
     // ask "from whom?" only when a referral was chosen.

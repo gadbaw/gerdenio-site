@@ -333,6 +333,7 @@ fieldset.field legend { display: block; font-size: 0.85rem; font-weight: 600; ma
 .opt input:focus-visible + span { outline: 2px solid var(--accent-soft); outline-offset: 1px; border-color: var(--accent); }
 .opts-note { margin: 10px 0 0; }
 .opt-all { margin-bottom: 12px; }
+[hidden] { display: none !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* the week grid: rows = times of day, columns = days; a filled cell = available */
 .weekgrid { border-collapse: separate; border-spacing: 3px; table-layout: fixed; width: auto; margin: 0 -3px; }
