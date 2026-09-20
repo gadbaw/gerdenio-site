@@ -546,6 +546,21 @@ fieldset.field legend { display: block; font-size: 0.85rem; font-weight: 600; ma
 .article-body h3 { font-size: 1.5rem; margin: 1.9em 0 0.55em; }
 .article-body h3:first-child { margin-top: 0; }
 .article-body p { font-size: 1.09rem; line-height: 1.78; color: var(--ink-soft); }
+/* Scripture reading set before a homily */
+.reading {
+  margin: 0 0 2.2em; padding: 22px 28px 20px;
+  background: var(--accent-soft); border-left: 3px solid var(--accent);
+}
+.reading .reading-ref {
+  font-family: var(--sans); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent-dk); margin: 0 0 0.9em;
+}
+.article-body .reading p { font-family: var(--serif); font-size: 1.02rem; line-height: 1.7; color: var(--ink-soft); margin: 0 0 0.9em; }
+.article-body .reading p:last-of-type { margin-bottom: 0; }
+.reading .reading-credit { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); font-style: italic; margin: 1em 0 0; }
+.article-body .reading .reading-credit { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); }
+@media (max-width: 560px) { .reading { padding: 18px 20px 16px; } }
+
 .pullquote {
   font-family: var(--serif); font-weight: 300; font-size: 1.7rem; line-height: 1.4;
   color: var(--accent-dk); border-left: 3px solid var(--accent);
