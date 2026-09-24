@@ -36,6 +36,18 @@ These are stand-ins I could not verify — please confirm/replace:
 - The Jesuits West "Little Brown Brother" article blocks automated fetch — no content was pulled from it.
   Paste any passages you'd like quoted and I'll add them.
 
+## Open Graph share cards
+Every public page has its own 1200×630 share card in `assets/img/og/<slug>.png`, built by
+`_design/og/build_og.py` from the page's eyebrow, `<h1>`, byline, and standfirst (or meta
+description) using the `_design/og/card.html` template. After adding or retitling a page:
+```bash
+python3 _design/og/build_og.py            # all pages
+python3 _design/og/build_og.py <slug>     # one page
+```
+The script rewrites that page's `og:image`, `twitter:image`, and `og:image:alt` tags with a
+content-hashed URL. Exceptions: `index.html` keeps the brand card, and the Psychodynamic
+Capacities event keeps its portrait card. Rendering uses the installed Google Chrome headlessly.
+
 ## Run locally
 ```bash
 cd ~/gerdenio-site
