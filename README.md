@@ -1,6 +1,6 @@
 # Gerdenio Manuel Center for Psychotherapy — website
 
-Static marketing site (plain HTML + CSS, no build step). Designed in the spirit of
+Static practice site (plain HTML + CSS, no build step). Designed in the spirit of
 the Austen Riggs Center and the Boston Change Process Study Group: calm, text-forward,
 serif-led, generous whitespace, muted sage/cream palette.
 
