@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#20304a; --ink-soft:#475873; --muted:#7b88a0; --line:#dde4f0; --paper:#fbfcfe;
+    --accent:#4f86cf; --accent-dk:#305f9e; --sun:#e8973a;
+    --serif:"Newsreader", Georgia, serif; --sans:"Hanken Grotesk", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; width:1200px; height:630px; overflow:hidden; }
+  body { background:var(--paper); font-family:var(--sans); color:var(--ink); -webkit-font-smoothing:antialiased; position:relative; }
+  /* dawn light: a blue pool top-left, an apricot pool top-right (mirrors the site hero) */
+  .glow { position:absolute; border-radius:50%; filter:blur(70px); pointer-events:none; }
+  .glow.a { width:760px; height:760px; left:-260px; top:-380px; background:radial-gradient(circle, rgba(112,158,212,0.40), rgba(112,158,212,0) 66%); }
+  .glow.b { width:560px; height:560px; right:-160px; top:-260px; background:radial-gradient(circle, rgba(240,168,78,0.16), rgba(240,168,78,0) 66%); }
+  .frame { position:absolute; inset:22px; border:1px solid rgba(221,228,240,0.9); border-radius:8px; }
+  .card { position:absolute; inset:0; padding:78px 84px 70px; display:flex; flex-direction:column; }
+  .text { margin:auto 0; padding-bottom:36px; }
+  .eyebrow { font-weight:600; font-size:21px; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); margin:0 0 22px; }
+  .title { font-family:var(--serif); font-weight:300; font-size:76px; line-height:1.06; letter-spacing:-0.022em; margin:0 0 26px; max-width:960px; text-wrap:balance; }
+  .title em { font-style:italic; color:var(--accent); font-weight:inherit; }
+  .byline { font-size:29px; font-weight:500; color:var(--ink); margin:0 0 8px; line-height:1.3; }
+  .sub { font-size:25px; font-weight:400; color:var(--ink-soft); line-height:1.42; margin:0; max-width:900px;
+         display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .foot { display:flex; align-items:baseline; justify-content:space-between; }
+  .mark { font-family:var(--serif); font-size:31px; letter-spacing:-0.012em; color:var(--ink); white-space:nowrap; }
+  .mark .for { font-style:italic; color:var(--muted); font-size:0.82em; margin:0 0.28em 0 0.32em; }
+  .mark .disc { font-family:var(--sans); font-size:0.58em; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); }
+  .url { font-size:19px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); }
+  .sprig { position:absolute; right:84px; top:70px; width:220px; height:auto; }
+</style>
+</head>
+<body>
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="frame"></div>
+  <svg class="sprig" viewBox="0 0 300 56" fill="none" stroke="#4f86cf" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M6 38 C72 22 150 22 200 29 C246 35 280 25 296 19"/>
+    <path d="M150 29 C150 15 160 7 176 6 C175 22 164 30 150 29"/>
+    <path stroke="#e8973a" d="M139 31 C139 19 129 12 114 13 C116 28 126 33 139 31"/>
+  </svg>
+  <div class="card">
+    <div class="text">
+      <p class="eyebrow">{{eyebrow}}</p>
+      <h1 class="title">{{title}}</h1>
+      <p class="byline">{{byline}}</p>
+      <p class="sub">{{sub}}</p>
+    </div>
+    <div class="foot">
+      <div class="mark">Gerdenio Manuel Center<span class="for">for</span><span class="disc">Psychotherapy</span></div>
+      <div class="url">gerdenio.com</div>
+    </div>
+  </div>
+  <script>
+    // Fit: shrink the title until title + byline + sub leave room for the footer.
+    function fit() {
+      var t = document.querySelector('.title'), card = document.querySelector('.card'),
+          foot = document.querySelector('.foot'), fs = 76;
+      var by = document.querySelector('.byline'); if (!by.textContent.trim()) by.remove();
+      while (fs > 44 && (card.scrollHeight > card.clientHeight || t.getBoundingClientRect().height > 250)) {
+        fs -= 2; t.style.fontSize = fs + 'px';
+      }
+    }
+    document.fonts.ready.then(fit);
+  </script>
+</body>
+</html>

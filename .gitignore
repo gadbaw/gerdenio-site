@@ -4,6 +4,8 @@
 # OS cruft
 .DS_Store
 
-# Local design exploration (never deploy)
-_design/
+# Local design exploration (never deploy). The OG card builder is tracked so every
+# machine can build share cards; GitHub Pages skips _-prefixed folders, so it isn't published.
+_design/*
+!_design/og/
 ben-gadbaw-original.jpg

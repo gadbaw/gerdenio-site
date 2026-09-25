@@ -46,7 +46,9 @@ python3 _design/og/build_og.py <slug>     # one page
 ```
 The script rewrites that page's `og:image`, `twitter:image`, and `og:image:alt` tags with a
 content-hashed URL. Exceptions: `index.html` keeps the brand card, and the Psychodynamic
-Capacities event keeps its portrait card. Rendering uses the installed Google Chrome headlessly.
+Capacities event keeps its portrait card. Rendering uses the installed Google Chrome headlessly
+(`/Applications/Google Chrome.app`). The builder is tracked in git, so it arrives with a normal
+`git pull`; the rest of `_design/` stays local.
 
 ## Run locally
 ```bash
